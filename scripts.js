@@ -452,8 +452,8 @@ function renderListings(lst) {
   grid.innerHTML = data.map(prop => `
     <div class="listing-card" onclick="openPropertyModal('${prop.id}')">
       <div class="listing-image">
-        <img src="${prop.image}" alt="${prop.address}" loading="lazy">
-        ${prop.status === 'sold' ? `<span class="listing-badge sold">Sold${prop.soldDate ? ' - ' + prop.soldDate : ''}</span>` : (prop.status !== 'active' ? `<span class="listing-badge ${prop.status}">${prop.status.charAt(0).toUpperCase() + prop.status.slice(1)}</span>` : '')}
+        <img src="${prop.image || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80'}" alt="${prop.address}" loading="lazy">
+        ${prop.status === 'sold' ? `<span class="listing-badge sold">Sold${prop.sale_date ? ' - ' + prop.sale_date : (prop.soldDate ? ' - ' + prop.soldDate : '')}</span>` : (prop.status !== 'active' ? `<span class="listing-badge ${prop.status}">${prop.status.charAt(0).toUpperCase() + prop.status.slice(1)}</span>` : '')}
         ${prop.status !== 'sold' ? `<button class="listing-favorite" onclick="event.stopPropagation(); toggleFavorite('${prop.id}')" aria-label="Favorite">
           ${favorites.includes(prop.id) ? '❤️' : '🤍'}
         </button>` : ''}
