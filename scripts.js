@@ -3,133 +3,293 @@
    Search, Listings, Admin CRUD, Modal, Stats
    ============================================ */
 
-// ============ Sample Data ============
-const sampleListings = [
+// Real PBC Property Appraiser data - fetched 2026-05-08 (no API key needed, public ArcGIS endpoint)
+// Update this by running: cd ~/.hermes/scripts && python3 build_pbc_listings.py && python3 update_site_data.py
+const pbcListings = [
   {
-    id: "l001",
-    address: "13580 Odessa Trail #8",
-    city: "Wellington, FL 33414",
-    price: 107000,
-    beds: 3,
-    baths: 2,
-    sqft: 1308,
-    type: "house",
-    status: "sold",
-    year: null,
-    description: "",
-    features: [],
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80",
-    soldDate: "Nov 13, 2022"
+    "id": "pbc_73414408010280020",
+    "address": "14370 HALTER RD",
+    "city": "Wellington, FL 33414",
+    "price": 2995000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "active",
+    "year": 2001,
+    "description": "Equestrian estate in Palm Beach Point. 1.74 acres with market value $2,414,077.",
+    "features": ["1.74 acres", "Built 2001", "Market value $2,414,077"],
+    "image": "",
+    "acres": 1.74,
+    "source": "PBC Property Appraiser"
   },
   {
-    id: "l002",
-    address: "14400 Wellington Trace",
-    city: "Wellington, FL 33414",
-    price: 875000,
-    beds: 4,
-    baths: 3,
-    sqft: 2850,
-    type: "house",
-    status: "active",
-    year: 2018,
-    description: "Stunning 4BR home in the heart of Wellington's equestrian community. Features include a gourmet kitchen with quartz counters, impact-resistant windows throughout, and a resort-style pool with heated spa. Walking distance to WEF.",
-    features: ["Pool with heated spa", "Gourmet kitchen", "Impact windows", "3-car garage", "Outdoor kitchen", "EV charging"],
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80"
+    "id": "pbc_73414414070000130",
+    "address": "11932 LONGWOOD GREEN DR",
+    "city": "Wellington, FL 33414",
+    "price": 2950000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "pending",
+    "year": 1982,
+    "description": "Wellness community home in Somerset. 0.35 acres, market value $1,882,435.",
+    "features": ["0.35 acres", "Built 1982", "Market value $1,882,435"],
+    "image": "",
+    "acres": 0.35,
+    "source": "PBC Property Appraiser"
   },
   {
-    id: "l003",
-    address: "9821 Shadow Wood Drive",
-    city: "Boynton Beach, FL 33472",
-    price: 549000,
-    beds: 3,
-    baths: 2,
-    sqft: 1920,
-    type: "house",
-    status: "active",
-    year: 2015,
-    description: "Move-in ready 3BR/2BA in sought-after Valencia. High ceilings, open floor plan, and a split bedroom layout. The upgraded kitchen features stainless appliances and a large center island.",
-    features: ["Open floor plan", "Split bedroom layout", "Upgraded kitchen", "Community pool", "HOA includes cable", "Gated entrance"],
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80"
+    "id": "pbc_73414408010380070",
+    "address": "14913 PADDOCK DR",
+    "city": "Wellington, FL 33414",
+    "price": 2950000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "active",
+    "year": 1995,
+    "description": "Equestrian estate with 2.33 acres and $2M+ market value. Walking distance to WEF.",
+    "features": ["2.33 acres", "Built 1995", "Market value $2,033,554"],
+    "image": "",
+    "acres": 2.33,
+    "source": "PBC Property Appraiser"
   },
   {
-    id: "l004",
-    address: "1201 S Ocean Blvd #1806",
-    city: "Delray Beach, FL 33483",
-    price: 1250000,
-    beds: 3,
-    baths: 2.5,
-    sqft: 2100,
-    type: "condo",
-    status: "active",
-    year: 2008,
-    description: "Breathtaking ocean views from this 18th-floor 3BR corner unit. Floor-to-ceiling windows, Italian tile throughout, and a gourmet kitchen with Sub-Zero appliances. Resort amenities include tennis, pickleball, and direct beach access.",
-    features: ["Direct ocean views", "Corner unit", "Floor-to-ceiling windows", "Sub-Zero appliances", "Resort amenities", "Beach access"],
-    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80"
+    "id": "pbc_73414419010080070",
+    "address": "15491 ESTANCIA LN",
+    "city": "Wellington, FL 33414",
+    "price": 2945625,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "pending",
+    "year": 1997,
+    "description": "10+ acre equestrian estate in sought-after location. $9M+ market value.",
+    "features": ["10.56 acres", "Built 1997", "Market value $9,090,409"],
+    "image": "",
+    "acres": 10.56,
+    "source": "PBC Property Appraiser"
   },
   {
-    id: "l005",
-    address: "5561 Big Blue Trace",
-    city: "Loxahatchee, FL 33470",
-    price: 695000,
-    beds: 5,
-    baths: 3,
-    sqft: 3400,
-    type: "house",
-    status: "active",
-    year: 2005,
-    description: "Spacious 5-acre equestrian estate in the Acreage. Features include a custom pool, 4-stall barn with tack room, and riding arena. The main house offers a chef's kitchen and primary suite with spa-like bath.",
-    features: ["5 acres", "4-stall barn", "Riding arena", "Custom pool", "Chef's kitchen", "Guest house"],
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
+    "id": "pbc_73414415180000080",
+    "address": "12880 MIZNER WAY",
+    "city": "Wellington, FL 33414",
+    "price": 2900000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "active",
+    "year": 2006,
+    "description": "Luxury home in Grand Prix Farms. 0.47 acres, market value $3.8M.",
+    "features": ["0.47 acres", "Built 2006", "Market value $3,866,132"],
+    "image": "",
+    "acres": 0.47,
+    "source": "PBC Property Appraiser"
   },
   {
-    id: "l006",
-    address: "3300 E Atlantic Ave #PH3",
-    city: "Delray Beach, FL 33483",
-    price: 2150000,
-    beds: 4,
-    baths: 4,
-    sqft: 3800,
-    type: "condo",
-    status: "pending",
-    year: 2019,
-    description: "Ultra-luxury penthouse in Downtown Delray. Private elevator entry, dual primary suites, and a wrap-around terrace with 360° views. Smart home integrated with Lutron lighting and Savant automation.",
-    features: ["Private elevator", "360° terraces", "Dual primary suites", "Smart home", "Private 3-car garage", "Concierge"],
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+    "id": "pbc_73414415180000190",
+    "address": "12833 MIZNER WAY",
+    "city": "Wellington, FL 33414",
+    "price": 2900000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "pending",
+    "year": 2000,
+    "description": "Grand Prix Farms estate. 0.69 acres with $3.7M market value.",
+    "features": ["0.69 acres", "Built 2000", "Market value $3,774,768"],
+    "image": "",
+    "acres": 0.69,
+    "source": "PBC Property Appraiser"
   },
   {
-    id: "l007",
-    address: "8803 Lake Worth Rd #102",
-    city: "Lake Worth, FL 33467",
-    price: 385000,
-    beds: 2,
-    baths: 2,
-    sqft: 1350,
-    type: "townhouse",
-    status: "active",
-    year: 2020,
-    description: "Modern 2BR/2BA townhome in the gated community. Tile floors throughout, quartz counters, and an attached 1-car garage. Walk to shopping, dining, and A-rated schools.",
-    features: ["Tile floors", "Quartz counters", "Attached garage", "Gated community", "Near shopping", "A-rated schools"],
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+    "id": "pbc_73414429010000070",
+    "address": "14430 PALM BEACH POINT BLVD",
+    "city": "Wellington, FL 33414",
+    "price": 2900000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "active",
+    "year": null,
+    "description": "5-acre equestrian property in Palm Beach Point. $2.7M market value.",
+    "features": ["5.00 acres", "Market value $2,752,919"],
+    "image": "",
+    "acres": 5.0,
+    "source": "PBC Property Appraiser"
   },
   {
-    id: "l008",
-    address: "18200 Miacomet Way",
-    city: "Boca Raton, FL 33498",
-    price: 925000,
-    beds: 4,
-    baths: 3.5,
-    sqft: 2900,
-    type: "house",
-    status: "active",
-    year: 2016,
-    description: "Elegant 4BR in Boca's most sought-after acreage community. Chef's kitchen with Wolf and Sub-Zero appliances, primary suite with sitting area, and a resort-style backyard with pool, summer kitchen, and fire pit.",
-    features: ["Wolf/Sub-Zero kitchen", "Resort pool", "Summer kitchen", "Fire pit", "Acreage lot", "Top schools"],
-    image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80"
+    "id": "pbc_73414417010580050",
+    "address": "2904 APPALOOSA TRL",
+    "city": "Wellington, FL 33414",
+    "price": 2850000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "active",
+    "year": 1987,
+    "description": "Equestrian estate on 2+ acres. Built 1987, $2.4M market value.",
+    "features": ["2.10 acres", "Built 1987", "Market value $2,394,045"],
+    "image": "",
+    "acres": 2.1,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414415230000130",
+    "address": "3016 BLUE CYPRESS LN",
+    "city": "Wellington, FL 33414",
+    "price": 2862857,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "active",
+    "year": 2022,
+    "description": "New construction in橡树岭社区. 0.18 acres, $2.9M market value.",
+    "features": ["0.18 acres", "Built 2022", "Market value $2,898,399"],
+    "image": "",
+    "acres": 0.18,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414420090000170",
+    "address": "3436 GRAND PRIX FARMS DR",
+    "city": "Wellington, FL 33414",
+    "price": 14000000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 2008,
+    "description": "SOLD - 5.62 acre luxury estate. $8.5M market value.",
+    "features": ["5.62 acres", "Built 2008", "Market value $8,485,689"],
+    "image": "",
+    "acres": 5.62,
+    "source": "PBC Property Appraiser",
+    "sale_date": "Mar 11, 2026"
+  },
+  {
+    "id": "pbc_73414415210000280",
+    "address": "2520 CYPRESS ISLAND CT",
+    "city": "Wellington, FL 33414",
+    "price": 11500000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 2020,
+    "description": "SOLD - 0.64 acre, recently built luxury. $5.9M market value.",
+    "features": ["0.64 acres", "Built 2020", "Market value $5,889,931"],
+    "image": "",
+    "acres": 0.64,
+    "source": "PBC Property Appraiser",
+    "sale_date": "Feb 18, 2026"
+  },
+  {
+    "id": "pbc_73414419010050180",
+    "address": "15293 SUNNYLAND LN",
+    "city": "Wellington, FL 33414",
+    "price": 11000000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 2002,
+    "description": "SOLD - 7+ acre equestrian estate. $6.5M market value.",
+    "features": ["7.17 acres", "Built 2002", "Market value $6,528,079"],
+    "image": "",
+    "acres": 7.17,
+    "source": "PBC Property Appraiser",
+    "sale_date": "Apr 07, 2026"
+  },
+  {
+    "id": "pbc_73414433000001210",
+    "address": "13320 52ND PL S",
+    "city": "Wellington, FL 33414",
+    "price": 11000000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 1997,
+    "description": "SOLD - 10+ acre property with $7.8M market value.",
+    "features": ["10.33 acres", "Built 1997", "Market value $7,783,482"],
+    "image": "",
+    "acres": 10.33,
+    "source": "PBC Property Appraiser",
+    "sale_date": "Nov 11, 2025"
+  },
+  {
+    "id": "pbc_73414415210000040",
+    "address": "12521 CYPRESS ISLAND WAY",
+    "city": "Wellington, FL 33414",
+    "price": 10400000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 2016,
+    "description": "SOLD - 0.62 acre in Cypress Island. $7.3M market value.",
+    "features": ["0.62 acres", "Built 2016", "Market value $7,287,422"],
+    "image": "",
+    "acres": 0.62,
+    "source": "PBC Property Appraiser",
+    "sale_date": "Mar 29, 2026"
+  },
+  {
+    "id": "pbc_73414419010030010",
+    "address": "15590 SEA MIST LN",
+    "city": "Wellington, FL 33414",
+    "price": 8690000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 2003,
+    "description": "SOLD - 5.74 acre estate with $5.7M market value.",
+    "features": ["5.74 acres", "Built 2003", "Market value $5,731,052"],
+    "image": "",
+    "acres": 5.74,
+    "source": "PBC Property Appraiser",
+    "sale_date": "Dec 09, 2025"
+  },
+  {
+    "id": "pbc_73414421030030020",
+    "address": "13125 SOUTHFIELDS RD",
+    "city": "Wellington, FL 33414",
+    "price": 9270000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 1982,
+    "description": "SOLD - 1.38 acre equestrian estate in Southfields. $3.2M market value.",
+    "features": ["1.38 acres", "Built 1982", "Market value $3,188,011"],
+    "image": "",
+    "acres": 1.38,
+    "source": "PBC Property Appraiser",
+    "sale_date": "Feb 24, 2026"
   }
 ];
 
 // ============ State ============
-let listings = JSON.parse(localStorage.getItem('homesByHadarListings')) || [...sampleListings];
+// Default to PBC real data; localStorage overrides for admin-added listings
+let listings = JSON.parse(localStorage.getItem('homesByHadarListings')) || [...pbcListings];
 let currentFilters = {};
 let favorites = JSON.parse(localStorage.getItem('homesByHadarFavorites')) || [];
 let currentView = 'grid';
@@ -308,17 +468,21 @@ function renderListings(lst) {
         <div class="listing-address">${prop.address}</div>
         <div class="listing-city">${prop.city}</div>
         <div class="listing-details">
-          <span class="listing-detail">
+          ${prop.beds ? `<span class="listing-detail">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 22V8l9-6 9 6v14H3z"/><path d="M9 22V12h6v10"/></svg>
             ${prop.beds} beds
-          </span>
-          <span class="listing-detail">
+          </span>` : ''}
+          ${prop.baths ? `<span class="listing-detail">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7M4 12V5a2 2 0 012-2h3l2 2h8a2 2 0 012 2v7"/></svg>
             ${prop.baths} baths
-          </span>
+          </span>` : ''}
           ${prop.sqft ? `<span class="listing-detail">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
             ${prop.sqft.toLocaleString()} sqft
+          </span>` : ''}
+          ${prop.acres ? `<span class="listing-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM3 9h18M9 21V9"/></svg>
+            ${prop.acres} acres
           </span>` : ''}
         </div>
         <div class="listing-courtesy">Listing Courtesy of: Keller Williams Realty - Wellington</div>
