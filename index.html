@@ -5,32 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homes by Hadar — KW Agent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
   <!-- Top Bar -->
   <div class="top-bar">
     <div class="top-bar-inner">
-      <span class="top-brand">Keller Williams Realty</span>
-      <span class="top-phone">📞 <a href="tel:+15615550196">(561) 555-0196</a></span>
+      <button class="top-menu-btn" id="topMenuBtn" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <span class="top-search-btn" id="topSearchBtn">Search</span>
+      <div class="top-logo">
+        <svg class="h-logo-svg" viewBox="0 0 60 60" width="40" height="40">
+          <circle cx="30" cy="30" r="28" fill="none" stroke="#C4A050" stroke-width="2.5"/>
+          <path d="M30 8 C18 8 12 16 12 24 C12 32 18 36 24 36 L24 42 C24 46 27 49 30 49 C33 49 36 46 36 42 L36 36 C42 36 48 32 48 24 C48 16 42 8 30 8Z" fill="#C4A050"/>
+          <text x="30" y="38" text-anchor="middle" font-family="Playfair Display, serif" font-size="22" font-weight="600" fill="white">H</text>
+        </svg>
+      </div>
     </div>
   </div>
 
   <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <span class="logo-kw">KW</span>
-        <span class="logo-name">Homes by Hadar</span>
+      <a href="#home" class="nav-logo">
+        <svg class="h-logo-svg" viewBox="0 0 60 60" width="44" height="44">
+          <circle cx="30" cy="30" r="28" fill="none" stroke="#C4A050" stroke-width="2.5"/>
+          <text x="30" y="40" text-anchor="middle" font-family="Playfair Display, serif" font-size="24" font-weight="600" fill="#C4A050">H</text>
+        </svg>
+        <span class="nav-brand-text">Homes By Hadar</span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#search">Search</a></li>
-        <li><a href="#listings">Listings</a></li>
+        <li><a href="#listings">Featured</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#admin" class="admin-link">⚙ Add Listing</a></li>
@@ -45,65 +57,17 @@
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content">
-      <h1 class="hero-title">Find Your Perfect Home<br><em>With Hadar</em></h1>
-      <p class="hero-subtitle">Your trusted Keller Williams agent in South Florida</p>
+      <h1 class="hero-title">Homes By Hadar</h1>
       
       <!-- Search Widget -->
       <div class="search-widget" id="searchWidget">
         <div class="search-tabs">
-          <button class="search-tab active" data-type="buy">Buy</button>
-          <button class="search-tab" data-type="rent">Rent</button>
-          <button class="search-tab" data-type="sell">Sell</button>
+          <button class="search-tab active" data-type="buy">BUY</button>
+          <button class="search-tab" data-type="rent">RENT</button>
         </div>
-        <div class="search-fields">
-          <div class="search-field search-location">
-            <label>Location</label>
-            <input type="text" id="searchLocation" placeholder="City, ZIP, or Address" autocomplete="off">
-          </div>
-          <div class="search-field search-price">
-            <label>Price Range</label>
-            <select id="searchPrice">
-              <option value="">Any Price</option>
-              <option value="0-300000">Under $300K</option>
-              <option value="300000-500000">$300K - $500K</option>
-              <option value="500000-750000">$500K - $750K</option>
-              <option value="750000-1000000">$750K - $1M</option>
-              <option value="1000000-1500000">$1M - $1.5M</option>
-              <option value="1500000-2000000">$1.5M - $2M</option>
-              <option value="2000000-999999999">$2M+</option>
-            </select>
-          </div>
-          <div class="search-field search-beds">
-            <label>Beds</label>
-            <select id="searchBeds">
-              <option value="">Any</option>
-              <option value="1">1+</option>
-              <option value="2">2+</option>
-              <option value="3">3+</option>
-              <option value="4">4+</option>
-              <option value="5">5+</option>
-            </select>
-          </div>
-          <div class="search-field search-baths">
-            <label>Baths</label>
-            <select id="searchBaths">
-              <option value="">Any</option>
-              <option value="1">1+</option>
-              <option value="2">2+</option>
-              <option value="3">3+</option>
-              <option value="4">4+</option>
-            </select>
-          </div>
-          <div class="search-field search-type">
-            <label>Property Type</label>
-            <select id="searchType">
-              <option value="">All Types</option>
-              <option value="house">House</option>
-              <option value="condo">Condo</option>
-              <option value="townhouse">Townhouse</option>
-              <option value="land">Land</option>
-              <option value="commercial">Commercial</option>
-            </select>
+        <div class="search-fields search-fields-single">
+          <div class="search-field search-field-wide">
+            <input type="text" id="searchLocation" placeholder="City, Neighborhood, Address, School, Zip..." autocomplete="off">
           </div>
           <button class="search-btn" id="searchBtn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -115,33 +79,20 @@
     </div>
   </section>
 
-  <!-- Stats Bar -->
-  <div class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat-item">
-        <span class="stat-number" data-target="150">0</span>+
-        <span class="stat-label">Homes Sold</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="12">0</span>
-        <span class="stat-label">Years Experience</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-target="98">0</span>%
-        <span class="stat-label">Client Satisfaction</span>
-      </div>
-      <div class="stat-item">
-        $<span class="stat-number" data-target="45">0</span>M+
-        <span class="stat-label">Sales Volume</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Listings Section -->
+  <!-- Featured Listings Section -->
   <section class="listings" id="listings">
-    <div class="section-inner">
-      <p class="section-eyebrow">Featured Properties</p>
-      <h2 class="section-title">Active Listings</h2>
+    <div class="section-inner listings-section">
+      <div class="listings-header">
+        <h2 class="section-title">Featured Listings</h2>
+        <div class="listings-pagination">
+          <button class="pagination-btn" id="prevListing" aria-label="Previous">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="pagination-btn" id="nextListing" aria-label="Next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
       
       <!-- Filter Bar -->
       <div class="filter-bar">
@@ -178,12 +129,178 @@
     </div>
   </section>
 
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="section-eyebrow">Let's Connect</p>
+          <h2 class="section-title">Interested? Let's Talk!</h2>
+          
+          <div class="contact-methods">
+            <div class="contact-method">
+              <i class="fas fa-phone contact-icon"></i>
+              <div>
+                <strong>Office</strong>
+                <a href="tel:+15613896038" class="contact-link">(561) 389-6038</a>
+              </div>
+            </div>
+            <div class="contact-method">
+              <i class="fas fa-envelope contact-icon"></i>
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:hadargoldberg78@gmail.com" class="contact-link">hadargoldberg78@gmail.com</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Agent Profile -->
+          <div class="agent-profile">
+            <div class="agent-profile-logo">
+              <svg class="h-logo-svg" viewBox="0 0 60 60" width="50" height="50">
+                <circle cx="30" cy="30" r="28" fill="none" stroke="#C4A050" stroke-width="2"/>
+                <text x="30" y="40" text-anchor="middle" font-family="Playfair Display, serif" font-size="24" font-weight="600" fill="#C4A050">H</text>
+              </svg>
+            </div>
+            <div class="agent-profile-info">
+              <strong class="agent-name">Hadar Goldberg PA</strong>
+              <span class="agent-license">License #: SL3344624</span>
+              <div class="agent-contacts">
+                <a href="tel:+15613896038" class="contact-link"><i class="fas fa-phone"></i> Office (561) 389-6038</a>
+                <a href="mailto:hadargoldberg78@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> hadargoldberg78@gmail.com</a>
+              </div>
+              <div class="agent-socials">
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm">
+            <h3>Send a Message</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactFirstName">First Name *</label>
+                <input type="text" id="contactFirstName" name="firstName" required>
+              </div>
+              <div class="form-group">
+                <label for="contactLastName">Last Name *</label>
+                <input type="text" id="contactLastName" name="lastName" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email Address *</label>
+              <input type="email" id="contactEmail" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="contactPhone">Phone Number</label>
+              <div class="phone-input-wrap">
+                <span class="phone-flag">🇺🇸</span>
+                <input type="tel" id="contactPhone" name="phone" placeholder="(555) 123-4567">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" rows="4" placeholder="Write your message here..."></textarea>
+            </div>
+            
+            <div class="form-legal">
+              <div class="checkbox-group">
+                <input type="checkbox" id="termsAgree" required>
+                <label for="termsAgree">I agree to the <a href="#" class="legal-link">Terms of Use</a> and <a href="#" class="legal-link">Privacy Policy</a></label>
+              </div>
+              <div class="checkbox-group tcpa-checkbox">
+                <input type="checkbox" id="tcpaConsent" required>
+                <label for="tcpaConsent">By checking this box, I consent to receive calls, text messages, and automated messages from Keller Williams agents via phone, text, and automated systems, even if my number is on a Do Not Call registry. Message and data rates may apply.</label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30373.987654321!2d-80.67!3d26.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d6e123456789!2s1400+Corporate+Center+Way,+Wellington,+FL+33414!5e0!3m2!1sen!2sus!4v1234567890"
+        width="100%" 
+        height="400" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Keller Williams Realty Wellington Location">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Office Info Section -->
+  <section class="office-info">
+    <div class="section-inner">
+      <div class="office-info-content">
+        <div class="office-details">
+          <h3>Keller Williams Realty Wellington</h3>
+          <p>1400 Corporate Center Way, Second Floor, Wellington, FL 33414</p>
+          <p class="office-phone"><i class="fas fa-phone"></i> Office: (561) 472-1235</p>
+        </div>
+        <hr class="office-divider">
+        <div class="office-brand">
+          <svg class="h-logo-svg large" viewBox="0 0 60 60" width="80" height="80">
+            <circle cx="30" cy="30" r="28" fill="none" stroke="#C4A050" stroke-width="2.5"/>
+            <text x="30" y="40" text-anchor="middle" font-family="Playfair Display, serif" font-size="26" font-weight="600" fill="#C4A050">H</text>
+          </svg>
+        </div>
+        <div class="office-contacts">
+          <span><i class="fas fa-phone"></i> (561) 389-6038</span>
+          <span><i class="fas fa-envelope"></i> hadargoldberg78@gmail.com</span>
+        </div>
+        <div class="agent-socials">
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <hr class="office-divider">
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-number" data-target="150">0</span>+
+        <span class="stat-label">Homes Sold</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="12">0</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="98">0</span>%
+        <span class="stat-label">Client Satisfaction</span>
+      </div>
+      <div class="stat-item">
+        $<span class="stat-number" data-target="45">0</span>M+
+        <span class="stat-label">Sales Volume</span>
+      </div>
+    </div>
+  </div>
+
   <!-- About Section -->
   <section class="about" id="about">
     <div class="section-inner">
       <div class="about-grid">
         <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Hadar - Your Real Estate Agent">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Hadar Goldberg - Your Real Estate Agent">
           <div class="about-badge">
             <span class="badge-number">12</span>
             <span class="badge-text">Years in<br>South Florida</span>
@@ -191,7 +308,7 @@
         </div>
         <div class="about-content">
           <p class="section-eyebrow">Meet Your Agent</p>
-          <h2 class="section-title">Hadar — Your South Florida Real Estate Expert</h2>
+          <h2 class="section-title">Hadar Goldberg PA — Your South Florida Real Estate Expert</h2>
           <p class="about-text">With over 12 years helping families find their dream homes across Wellington, Boynton Beach, Delray Beach, and the surrounding communities, I bring deep local knowledge and genuine care to every transaction.</p>
           <p class="about-text">Whether you're a first-time buyer, upgrading to your forever home, or investing in South Florida real estate, I provide personalized service backed by the full resources of Keller Williams Realty.</p>
           
@@ -221,7 +338,7 @@
 
           <div class="about-cta">
             <a href="#contact" class="btn btn-primary">Get in Touch</a>
-            <a href="tel:+15615550196" class="btn btn-outline">Call (561) 555-0196</a>
+            <a href="tel:+15613896038" class="btn btn-outline">Call (561) 389-6038</a>
           </div>
         </div>
       </div>
@@ -258,79 +375,6 @@
             <strong>David T.</strong>
             <span>Property investor, 6 transactions</span>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
-    <div class="section-inner">
-      <div class="contact-grid">
-        <div class="contact-info">
-          <p class="section-eyebrow">Let's Connect</p>
-          <h2 class="section-title">Ready to Find Your Dream Home?</h2>
-          <p class="contact-intro">Whether you're buying, selling, or just curious about the market, I'm here to help. Reach out today for a free consultation.</p>
-          
-          <div class="contact-methods">
-            <a href="tel:+15615550196" class="contact-method">
-              <span class="method-icon">📞</span>
-              <div>
-                <strong>Phone</strong>
-                <span>(561) 555-0196</span>
-              </div>
-            </a>
-            <a href="mailto:Hadar@kw.com" class="contact-method">
-              <span class="method-icon">✉️</span>
-              <div>
-                <strong>Email</strong>
-                <span>Hadar@kw.com</span>
-              </div>
-            </a>
-            <div class="contact-method">
-              <span class="method-icon">📍</span>
-              <div>
-                <strong>Office</strong>
-                <span>Keller Williams Realty<br>Wellington, FL 33414</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-form-wrap">
-          <form class="contact-form" id="contactForm">
-            <h3>Send a Message</h3>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="contactName">Your Name *</label>
-                <input type="text" id="contactName" name="name" required>
-              </div>
-              <div class="form-group">
-                <label for="contactPhone">Phone</label>
-                <input type="tel" id="contactPhone" name="phone">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="contactEmail">Email *</label>
-              <input type="email" id="contactEmail" name="email" required>
-            </div>
-            <div class="form-group">
-              <label for="contactSubject">I'm interested in *</label>
-              <select id="contactSubject" name="subject" required>
-                <option value="">Select...</option>
-                <option value="buying">Buying a home</option>
-                <option value="selling">Selling my home</option>
-                <option value="investing">Investment properties</option>
-                <option value="tour">Schedule a tour</option>
-                <option value="general">General question</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="contactMessage">Message</label>
-              <textarea id="contactMessage" name="message" rows="4" placeholder="Tell me about your real estate goals..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-          </form>
         </div>
       </div>
     </div>
@@ -455,27 +499,47 @@ Water view"></textarea>
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="logo-kw">KW</span>
-        <div>
-          <strong>Homes by Hadar</strong>
-          <span>Keller Williams Realty</span>
+        <div class="kw-logo">
+          <svg viewBox="0 0 50 50" width="50" height="50">
+            <rect x="10" y="10" width="30" height="30" fill="#c41230" rx="3"/>
+            <text x="25" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="white">KW</text>
+          </svg>
+        </div>
+        <div class="footer-agent-thumb">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80" alt="Hadar" width="40" height="40">
         </div>
       </div>
-      <div class="footer-links">
-        <a href="#home">Home</a>
-        <a href="#search">Search</a>
-        <a href="#listings">Listings</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+      <div class="footer-legal">
+        <div class="footer-links-row">
+          <a href="#">Terms of Use</a>
+          <span class="footer-sep">|</span>
+          <a href="#">Privacy Policy</a>
+          <span class="footer-sep">|</span>
+          <a href="#">Cookie Policy</a>
+          <span class="footer-sep">|</span>
+          <a href="#">DMCA</a>
+          <span class="footer-sep">|</span>
+          <a href="#">Fair Housing</a>
+          <span class="footer-sep">|</span>
+          <a href="#">Accessibility</a>
+        </div>
+        <div class="footer-disclaimer">
+          <p>Keller Williams Realty is a franchise company. Each Keller Williams office is independently owned and operated.</p>
+          <p>All offices are equal opportunity employers.</p>
+          <p>© 1996-2024 Keller Williams Realty. All rights reserved.</p>
+        </div>
       </div>
-      <div class="footer-contact">
-        <span>📞 (561) 555-0196</span>
-        <span>✉️ Hadar@kw.com</span>
+      <div class="footer-download-app">
+        <a href="#" class="btn btn-outline-app">
+          <i class="fas fa-mobile-alt"></i> Download our app
+        </a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Homes by Hadar — Keller Williams Realty. All rights reserved.</p>
-      <p>Equal Housing Opportunity</p>
+    <div class="footer-captcha">
+      <div class="captcha-badge">
+        <span>reCAPTCHA</span>
+        <span class="captcha-privacy">Privacy - Terms</span>
+      </div>
     </div>
   </footer>
 

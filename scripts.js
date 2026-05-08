@@ -7,6 +7,22 @@
 const sampleListings = [
   {
     id: "l001",
+    address: "13580 Odessa Trail #8",
+    city: "Wellington, FL 33414",
+    price: 107000,
+    beds: 3,
+    baths: 2,
+    sqft: 1308,
+    type: "house",
+    status: "sold",
+    year: null,
+    description: "",
+    features: [],
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80",
+    soldDate: "Nov 13, 2022"
+  },
+  {
+    id: "l002",
     address: "14400 Wellington Trace",
     city: "Wellington, FL 33414",
     price: 875000,
@@ -21,7 +37,7 @@ const sampleListings = [
     image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80"
   },
   {
-    id: "l002",
+    id: "l003",
     address: "9821 Shadow Wood Drive",
     city: "Boynton Beach, FL 33472",
     price: 549000,
@@ -36,7 +52,7 @@ const sampleListings = [
     image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80"
   },
   {
-    id: "l003",
+    id: "l004",
     address: "1201 S Ocean Blvd #1806",
     city: "Delray Beach, FL 33483",
     price: 1250000,
@@ -51,7 +67,7 @@ const sampleListings = [
     image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80"
   },
   {
-    id: "l004",
+    id: "l005",
     address: "5561 Big Blue Trace",
     city: "Loxahatchee, FL 33470",
     price: 695000,
@@ -66,7 +82,7 @@ const sampleListings = [
     image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
   },
   {
-    id: "l005",
+    id: "l006",
     address: "3300 E Atlantic Ave #PH3",
     city: "Delray Beach, FL 33483",
     price: 2150000,
@@ -81,7 +97,7 @@ const sampleListings = [
     image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
   },
   {
-    id: "l006",
+    id: "l007",
     address: "8803 Lake Worth Rd #102",
     city: "Lake Worth, FL 33467",
     price: 385000,
@@ -91,24 +107,9 @@ const sampleListings = [
     type: "townhouse",
     status: "active",
     year: 2020,
-    description: "Modern 2BR/2BA townhome in the gated Winn Dixie plaza area. Tile floors throughout, quartz counters, and an attached 1-car garage. Walk to shopping, dining, and A-rated schools.",
+    description: "Modern 2BR/2BA townhome in the gated community. Tile floors throughout, quartz counters, and an attached 1-car garage. Walk to shopping, dining, and A-rated schools.",
     features: ["Tile floors", "Quartz counters", "Attached garage", "Gated community", "Near shopping", "A-rated schools"],
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
-  },
-  {
-    id: "l007",
-    address: "4551 D Ali Baba Lane",
-    city: "Palm Springs, FL 33461",
-    price: 425000,
-    beds: 3,
-    baths: 2,
-    sqft: 1650,
-    type: "house",
-    status: "sold",
-    year: 2012,
-    description: "Charming CBS 3BR/2BA home with updated kitchen and baths. Large corner lot with room for a pool. New roof (2023) and AC (2021). Close to shopping, parks, and major highways.",
-    features: ["CBS construction", "New roof 2023", "New AC 2021", "Corner lot", "Room for pool", "Close to highways"],
-    image: "https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?w=800&q=80"
   },
   {
     id: "l008",
@@ -292,10 +293,15 @@ function renderListings(lst) {
     <div class="listing-card" onclick="openPropertyModal('${prop.id}')">
       <div class="listing-image">
         <img src="${prop.image}" alt="${prop.address}" loading="lazy">
-        ${prop.status !== 'active' ? `<span class="listing-badge ${prop.status}">${prop.status.charAt(0).toUpperCase() + prop.status.slice(1)}</span>` : ''}
-        <button class="listing-favorite" onclick="event.stopPropagation(); toggleFavorite('${prop.id}')" aria-label="Favorite">
+        ${prop.status === 'sold' ? `<span class="listing-badge sold">Sold${prop.soldDate ? ' - ' + prop.soldDate : ''}</span>` : (prop.status !== 'active' ? `<span class="listing-badge ${prop.status}">${prop.status.charAt(0).toUpperCase() + prop.status.slice(1)}</span>` : '')}
+        ${prop.status !== 'sold' ? `<button class="listing-favorite" onclick="event.stopPropagation(); toggleFavorite('${prop.id}')" aria-label="Favorite">
           ${favorites.includes(prop.id) ? '❤️' : '🤍'}
-        </button>
+        </button>` : ''}
+        ${prop.images && prop.images.length > 1 ? `
+          <button class="listing-image-nav prev" onclick="event.stopPropagation(); navigateImage('${prop.id}', -1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="listing-image-nav next" onclick="event.stopPropagation(); navigateImage('${prop.id}', 1)"><i class="fas fa-chevron-right"></i></button>
+          <div class="listing-image-dots">${prop.images.map((_, i) => `<span class="listing-image-dot ${i === 0 ? 'active' : ''}"></span>`).join('')}</div>
+        ` : ''}
       </div>
       <div class="listing-body">
         <div class="listing-price">${formatPrice(prop.price)}</div>
@@ -315,6 +321,7 @@ function renderListings(lst) {
             ${prop.sqft.toLocaleString()} sqft
           </span>` : ''}
         </div>
+        <div class="listing-courtesy">Listing Courtesy of: Keller Williams Realty - Wellington</div>
       </div>
     </div>
   `).join('');
@@ -571,16 +578,22 @@ function setupContactForm() {
   const form = document.getElementById('contactForm');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const data = new FormData(form);
-    const name = data.get('name');
+    const formData = new FormData(form);
+    const firstName = formData.get('firstName');
+    const lastName = formData.get('lastName');
+    const email = formData.get('email');
+    const phone = formData.get('phone');
+    const message = formData.get('message');
+    const tcpaConsent = formData.get('tcpaConsent');
+    const termsAgree = formData.get('termsAgree');
     
     // Show success
     form.innerHTML = `
       <div style="text-align:center;padding:3rem;">
         <div style="font-size:3rem;margin-bottom:1rem;">🎉</div>
-        <h3 style="font-size:1.5rem;margin-bottom:0.5rem;">Thanks, ${name}!</h3>
+        <h3 style="font-size:1.5rem;margin-bottom:0.5rem;">Thanks, ${firstName}!</h3>
         <p style="color:var(--text-secondary);">I'll be in touch within 24 hours.</p>
-        <p style="color:var(--text-muted);font-size:0.875rem;margin-top:1rem;">For immediate help, call <a href="tel:+15615550196">(561) 555-0196</a></p>
+        <p style="color:var(--text-muted);font-size:0.875rem;margin-top:1rem;">For immediate help, call <a href="tel:+15613896038" style="color:var(--link-blue);">(561) 389-6038</a></p>
       </div>
     `;
   });
