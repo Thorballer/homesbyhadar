@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homes by Hadar — KW Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <span class="top-brand">Keller Williams Realty</span>
+      <span class="top-phone">📞 <a href="tel:+15615550196">(561) 555-0196</a></span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-kw">KW</span>
+        <span class="logo-name">Homes by Hadar</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#listings">Listings</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#admin" class="admin-link">⚙ Add Listing</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Search -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1920&q=80" alt="Luxury home exterior">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Find Your Perfect Home<br><em>With Hadar</em></h1>
+      <p class="hero-subtitle">Your trusted Keller Williams agent in South Florida</p>
+      
+      <!-- Search Widget -->
+      <div class="search-widget" id="searchWidget">
+        <div class="search-tabs">
+          <button class="search-tab active" data-type="buy">Buy</button>
+          <button class="search-tab" data-type="rent">Rent</button>
+          <button class="search-tab" data-type="sell">Sell</button>
+        </div>
+        <div class="search-fields">
+          <div class="search-field search-location">
+            <label>Location</label>
+            <input type="text" id="searchLocation" placeholder="City, ZIP, or Address" autocomplete="off">
+          </div>
+          <div class="search-field search-price">
+            <label>Price Range</label>
+            <select id="searchPrice">
+              <option value="">Any Price</option>
+              <option value="0-300000">Under $300K</option>
+              <option value="300000-500000">$300K - $500K</option>
+              <option value="500000-750000">$500K - $750K</option>
+              <option value="750000-1000000">$750K - $1M</option>
+              <option value="1000000-1500000">$1M - $1.5M</option>
+              <option value="1500000-2000000">$1.5M - $2M</option>
+              <option value="2000000-999999999">$2M+</option>
+            </select>
+          </div>
+          <div class="search-field search-beds">
+            <label>Beds</label>
+            <select id="searchBeds">
+              <option value="">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+            </select>
+          </div>
+          <div class="search-field search-baths">
+            <label>Baths</label>
+            <select id="searchBaths">
+              <option value="">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+            </select>
+          </div>
+          <div class="search-field search-type">
+            <label>Property Type</label>
+            <select id="searchType">
+              <option value="">All Types</option>
+              <option value="house">House</option>
+              <option value="condo">Condo</option>
+              <option value="townhouse">Townhouse</option>
+              <option value="land">Land</option>
+              <option value="commercial">Commercial</option>
+            </select>
+          </div>
+          <button class="search-btn" id="searchBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Search
+          </button>
+        </div>
+        <div class="search-results-count" id="searchResultsCount" style="display:none;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-number" data-target="150">0</span>+
+        <span class="stat-label">Homes Sold</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="12">0</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="98">0</span>%
+        <span class="stat-label">Client Satisfaction</span>
+      </div>
+      <div class="stat-item">
+        $<span class="stat-number" data-target="45">0</span>M+
+        <span class="stat-label">Sales Volume</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Listings Section -->
+  <section class="listings" id="listings">
+    <div class="section-inner">
+      <p class="section-eyebrow">Featured Properties</p>
+      <h2 class="section-title">Active Listings</h2>
+      
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label>Sort by:</label>
+          <select id="sortListings">
+            <option value="newest">Newest First</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="beds">Beds: Most</option>
+            <option value="sqft">Sq Ft: Largest</option>
+          </select>
+        </div>
+        <div class="view-toggle">
+          <button class="view-btn active" data-view="grid" aria-label="Grid view">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="view-btn" data-view="list" aria-label="List view">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2"/><line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/><line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Listings Grid -->
+      <div class="listings-grid" id="listingsGrid"></div>
+
+      <!-- No Results -->
+      <div class="no-results" id="noResults" style="display:none;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <h3>No properties found</h3>
+        <p>Try adjusting your search filters</p>
+        <button class="btn btn-primary" onclick="resetFilters()">Clear Filters</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Hadar - Your Real Estate Agent">
+          <div class="about-badge">
+            <span class="badge-number">12</span>
+            <span class="badge-text">Years in<br>South Florida</span>
+          </div>
+        </div>
+        <div class="about-content">
+          <p class="section-eyebrow">Meet Your Agent</p>
+          <h2 class="section-title">Hadar — Your South Florida Real Estate Expert</h2>
+          <p class="about-text">With over 12 years helping families find their dream homes across Wellington, Boynton Beach, Delray Beach, and the surrounding communities, I bring deep local knowledge and genuine care to every transaction.</p>
+          <p class="about-text">Whether you're a first-time buyer, upgrading to your forever home, or investing in South Florida real estate, I provide personalized service backed by the full resources of Keller Williams Realty.</p>
+          
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <span class="highlight-icon">🏆</span>
+              <div>
+                <strong>Keller Williams International Award Winner</strong>
+                <span>Top 5% agent worldwide</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">📍</span>
+              <div>
+                <strong>Area Specialist</strong>
+                <span>Wellington, Boynton, Delray, Boca Raton</span>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">🤝</span>
+              <div>
+                <strong>Trusted by 500+ Families</strong>
+                <span>12 years, 150+ homes sold</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-cta">
+            <a href="#contact" class="btn btn-primary">Get in Touch</a>
+            <a href="tel:+15615550196" class="btn btn-outline">Call (561) 555-0196</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="section-inner">
+      <p class="section-eyebrow">What Clients Say</p>
+      <h2 class="section-title">Trusted by Families Across South Florida</h2>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote class="testimonial-text">"Hadar made buying our first home completely stress-free. She was patient, knowledgeable, and fought for us in a competitive market. We couldn't have done it without her!"</blockquote>
+          <div class="testimonial-author">
+            <strong>Sarah & Mike K.</strong>
+            <span>First-time buyers in Wellington</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote class="testimonial-text">"Sold our house in 3 days, over asking. Hadar's marketing is top-notch and her negotiation skills are unmatched. Highly recommend for any sale."</blockquote>
+          <div class="testimonial-author">
+            <strong>Jennifer R.</strong>
+            <span>Home seller in Boynton Beach</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote class="testimonial-text">"As an investor, I need an agent who understands the market. Hadar has helped me buy 6 rental properties — each one a great deal. She's my go-to agent."</blockquote>
+          <div class="testimonial-author">
+            <strong>David T.</strong>
+            <span>Property investor, 6 transactions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="section-eyebrow">Let's Connect</p>
+          <h2 class="section-title">Ready to Find Your Dream Home?</h2>
+          <p class="contact-intro">Whether you're buying, selling, or just curious about the market, I'm here to help. Reach out today for a free consultation.</p>
+          
+          <div class="contact-methods">
+            <a href="tel:+15615550196" class="contact-method">
+              <span class="method-icon">📞</span>
+              <div>
+                <strong>Phone</strong>
+                <span>(561) 555-0196</span>
+              </div>
+            </a>
+            <a href="mailto:Hadar@kw.com" class="contact-method">
+              <span class="method-icon">✉️</span>
+              <div>
+                <strong>Email</strong>
+                <span>Hadar@kw.com</span>
+              </div>
+            </a>
+            <div class="contact-method">
+              <span class="method-icon">📍</span>
+              <div>
+                <strong>Office</strong>
+                <span>Keller Williams Realty<br>Wellington, FL 33414</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm">
+            <h3>Send a Message</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Your Name *</label>
+                <input type="text" id="contactName" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="contactPhone">Phone</label>
+                <input type="tel" id="contactPhone" name="phone">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email *</label>
+              <input type="email" id="contactEmail" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">I'm interested in *</label>
+              <select id="contactSubject" name="subject" required>
+                <option value="">Select...</option>
+                <option value="buying">Buying a home</option>
+                <option value="selling">Selling my home</option>
+                <option value="investing">Investment properties</option>
+                <option value="tour">Schedule a tour</option>
+                <option value="general">General question</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" rows="4" placeholder="Tell me about your real estate goals..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admin Panel (Toggle) -->
+  <section class="admin" id="admin" style="display:none;">
+    <div class="section-inner">
+      <div class="admin-header">
+        <h2>⚙️ Property Manager</h2>
+        <button class="btn btn-outline" onclick="toggleAdmin()">← Back to Site</button>
+      </div>
+
+      <!-- Add Property Form -->
+      <div class="admin-section">
+        <h3 id="adminFormTitle">Add New Property</h3>
+        <form class="admin-form" id="propertyForm">
+          <input type="hidden" id="editId" value="">
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="propAddress">Street Address *</label>
+              <input type="text" id="propAddress" required placeholder="123 Main St, Wellington FL 33414">
+            </div>
+            <div class="form-group">
+              <label for="propCity">City *</label>
+              <input type="text" id="propCity" required placeholder="Wellington">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="propPrice">Price ($) *</label>
+              <input type="number" id="propPrice" required placeholder="450000">
+            </div>
+            <div class="form-group">
+              <label for="propBeds">Beds *</label>
+              <input type="number" id="propBeds" required min="0" placeholder="3">
+            </div>
+            <div class="form-group">
+              <label for="propBaths">Baths *</label>
+              <input type="number" id="propBaths" required min="0" step="0.5" placeholder="2">
+            </div>
+            <div class="form-group">
+              <label for="propSqft">Sq Ft</label>
+              <input type="number" id="propSqft" placeholder="1800">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="propType">Property Type *</label>
+              <select id="propType" required>
+                <option value="">Select type...</option>
+                <option value="house">House</option>
+                <option value="condo">Condo</option>
+                <option value="townhouse">Townhouse</option>
+                <option value="land">Land</option>
+                <option value="commercial">Commercial</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="propStatus">Status</label>
+              <select id="propStatus">
+                <option value="active">Active</option>
+                <option value="pending">Pending</option>
+                <option value="sold">Sold</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="propYear">Year Built</label>
+              <input type="number" id="propYear" min="1800" max="2030" placeholder="2015">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="propDescription">Description</label>
+            <textarea id="propDescription" rows="3" placeholder="Beautiful 3BR home in Wellington with pool..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="propImage">Image URL</label>
+              <input type="url" id="propImage" placeholder="https://...">
+              <small style="color:var(--text-muted);display:block;margin-top:4px;">Paste an image URL or leave blank for placeholder.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="propFeatures">Features (one per line)</label>
+            <textarea id="propFeatures" rows="3" placeholder="Pool
+Garage: 2-car
+Gated community
+Water view"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="propSubmitBtn">Add Property</button>
+            <button type="button" class="btn btn-outline" onclick="cancelEdit()" id="cancelEditBtn" style="display:none;">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Existing Listings Manager -->
+      <div class="admin-section">
+        <h3>Manage Listings</h3>
+        <div class="admin-list" id="adminList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Property Modal -->
+  <div class="modal" id="propertyModal" style="display:none;">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-kw">KW</span>
+        <div>
+          <strong>Homes by Hadar</strong>
+          <span>Keller Williams Realty</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#search">Search</a>
+        <a href="#listings">Listings</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-contact">
+        <span>📞 (561) 555-0196</span>
+        <span>✉️ Hadar@kw.com</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Homes by Hadar — Keller Williams Realty. All rights reserved.</p>
+      <p>Equal Housing Opportunity</p>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
