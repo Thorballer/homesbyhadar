@@ -287,6 +287,208 @@ const pbcListings = [
   }
 ];
 
+// ============ MLS/IDX Data Source Config ============
+// Supports: 'pbc' (default, free county data) or 'mls' (if API key provided)
+// To enable MLS: set dataSource = 'mls', add your API key and endpoint
+// MLS providers: flexmls/Spark API, IDX Broker, Real Estate Webmasters, WolfNet, etc.
+// Most require KW franchise agreement or agent MLS membership
+const dataSourceConfig = {
+  dataSource: 'pbc',  // 'pbc' = Palm Beach County (free), 'mls' = MLS API (requires key)
+  // === MLS API Settings (fill in if dataSource = 'mls') ===
+  mlsApiKey: '',          // Your MLS/IDX provider API key
+  mlsEndpoint: '',        // e.g. 'https://api.flexmls.com/v1.0/', 'https://api.idxbroker.com/'
+  mlsApiKeyHeader: '',    // e.g. 'Authorization: Basic', 'X-Api-Key', 'ApiKey'
+  // Flexmls/Spark API example:
+  // mlsEndpoint: 'https://api.sparkplatform.com/',
+  // mlsApiKey: 'your-spark-api-key',
+  // mlsApiKeyHeader: 'Authorization: Bearer',
+  // IDX Broker example:
+  // mlsEndpoint: 'https://api.idxbroker.com/v2/',
+  // mlsApiKey: 'your-idx-api-key',
+  // mlsApiKeyHeader: 'X-Api-Key',
+  // === PBC County (always available, no key needed) ===
+  pbcRegion: 'WELLINGTON',  // or 'PALM BEACH', 'BOCA RATON', etc.
+  pbcZipCodes: ['33414', '33467', '33470', '33472', '33483'],
+  pbcMinPrice: 300000,
+  pbcMaxPrice: 20000000
+};
+
+// ============ MLS Data Fetcher ============
+async function fetchMLSListings() {
+  const { dataSource, mlsApiKey, mlsEndpoint, mlsApiKeyHeader } = dataSourceConfig;
+  
+  if (dataSource === 'mls' && mlsApiKey && mlsEndpoint) {
+    // Flexmls/Spark API
+    if (mlsEndpoint.includes('sparkplatform') || mlsEndpoint.includes('flexmls')) {
+      const headers = {};
+      if (mlsApiKeyHeader) {
+        const [headerName, headerType] = mlsApiKeyHeader.split(': ');
+        if (headerType === 'Bearer') headers[headerName] = `Bearer ${mlsApiKey}`;
+        else if (headerType === 'Basic') headers[headerName] = `Basic ${mlsApiKey}`;
+        else headers[headerName || 'X-Api-Key'] = mlsApiKey;
+      } else {
+        headers['Authorization'] = `Bearer ${mlsApiKey}`;
+      }
+      headers['Accept'] = 'application/json';
+      
+      // Search active listings in Wellington FL
+      const params = new URLSearchParams({
+        'Location': 'Wellington, FL',
+        'Status': 'Active',
+        'Limit': '50',
+        'expand[]': 'Photos,Rooms'
+      });
+      
+      const resp = await fetch(`${mlsEndpoint}listings?${params}`, { headers });
+      if (!resp.ok) throw new Error(`MLS API error: ${resp.status}`);
+      const data = await resp.json();
+      return normalizeMLSData(data);
+    }
+    
+    // IDX Broker
+    if (mlsEndpoint.includes('idxbroker')) {
+      const headers = { 'accesskey': mlsApiKey, 'Accept': 'application/json' };
+      const resp = await fetch(`${mlsEndpoint}properties?limit=50&city=Wellington&state=FL`, { headers });
+      if (!resp.ok) throw new Error(`IDX API error: ${resp.status}`);
+      const data = await resp.json();
+      return normalizeIDXData(data);
+    }
+    
+    // Generic RESO Web API
+    const headers = {};
+    if (mlsApiKey) headers[mlsApiKeyHeader.split(':')[0] || 'X-Api-Key'] = mlsApiKey;
+    headers['Accept'] = 'application/json';
+    const resp = await fetch(`${mlsEndpoint}listings?$filter=City eq 'Wellington'&$top=50`, { headers });
+    if (!resp.ok) throw new Error(`MLS API error: ${resp.status}`);
+    const data = await resp.json();
+    return normalizeRESOData(data);
+  }
+  
+  // Fall back to PBC county data (no key needed)
+  return fetchPBCListings();
+}
+
+function normalizeMLSData(data) {
+  // Flexmls/Spark API normalization
+  if (!data.Results) return [];
+  return data.Results.map(l => ({
+    id: `mls_${l.ListingKey}`,
+    address: l.UnparsedAddress || l.StreetNumber + ' ' + l.StreetName,
+    city: `${l.City || 'Wellington'}, FL ${l.PostalCode || '33414'}`,
+    price: l.ListPrice,
+    beds: l.BedroomsTotal || null,
+    baths: l.BathroomsFull || l.BathroomsTotal || null,
+    sqft: l.LivingArea || null,
+    type: mapPropertyType(l.PropertyType),
+    status: mapStatus(l.Status),
+    year: l.YearBuilt || null,
+    description: l.PublicRemarks || '',
+    features: extractFeatures(l),
+    images: l.Photos ? l.Photos.map(p => p.Uri) : [],
+    image: l.Photos && l.Photos[0] ? l.Photos[0].Uri : '',
+    acres: l.LotSizeAcres || null,
+    source: 'MLS',
+    mlsNumber: l.ListingKey,
+    listDate: l.ListingContractDate,
+    soldDate: l.CloseDate ? formatDate(l.CloseDate) : null,
+    garage: l.GarageSpaces || null,
+    pool: l.PoolFeatures ? 'Yes' : null,
+    hoa: l.HOAFee ? `$${l.HOAFee}/mo` : null
+  }));
+}
+
+function normalizeIDXData(data) {
+  if (!data.listings) return [];
+  return data.listings.map(l => ({
+    id: `idx_${l.listingID}`,
+    address: l.address,
+    city: `${l.city}, FL ${l.zipcode}`,
+    price: parseInt(l.price),
+    beds: parseInt(l.beds) || null,
+    baths: parseFloat(l.baths) || null,
+    sqft: parseInt(l.sqft) || null,
+    type: mapPropertyType(l.propType),
+    status: mapStatus(l.status),
+    year: parseInt(l.yearBuilt) || null,
+    description: l.description,
+    features: l.features || [],
+    image: l.image,
+    images: l.images || [],
+    acres: parseFloat(l.acres) || null,
+    source: 'MLS',
+    mlsNumber: l.listingID,
+    listDate: l.dateListed,
+    soldDate: l.soldDate || null
+  }));
+}
+
+function normalizeRESOData(data) {
+  // Handle OData or standard RESO format
+  const items = data.value || data.d || data.Results || [];
+  return items.map(l => ({
+    id: `mls_${l.ListingKey || l.Id}`,
+    address: l.UnparsedAddress || l.StreetAddress,
+    city: `${l.City || 'Wellington'}, FL ${l.PostalCode}`,
+    price: l.ListPrice || l.Price,
+    beds: l.Bedrooms || l.BedroomsTotal,
+    baths: l.Bathrooms || l.BathroomsFull || l.BathroomsTotal,
+    sqft: l.LivingArea || l.BuildingAreaTotal,
+    type: mapPropertyType(l.PropertyType),
+    status: mapStatus(l.Status),
+    year: l.YearBuilt,
+    description: l.PublicRemarks || l.Description,
+    features: [],
+    images: (l.Media || []).map(m => m.MediaURL || m.Uri),
+    image: (l.Media && l.Media[0] ? l.Media[0].MediaURL : ''),
+    acres: l.LotSizeAcres,
+    source: 'MLS',
+    mlsNumber: l.ListingKey || l.ListingId,
+    listDate: l.ListingContractDate,
+    soldDate: l.CloseDate
+  }));
+}
+
+async function fetchPBCListings() {
+  // Return embedded PBC data (already loaded)
+  return pbcListings.map(l => ({ ...l }));
+}
+
+function mapPropertyType(t) {
+  if (!t) return 'house';
+  t = t.toUpperCase();
+  if (t.includes('CONDO') || t.includes('TOWNHOUSE')) return 'condo';
+  if (t.includes('MOBILE') || t.includes('MANUFACTURED')) return 'house';
+  if (t.includes('LAND') || t.includes('LOT')) return 'land';
+  return 'house';
+}
+
+function mapStatus(s) {
+  if (!s) return 'active';
+  s = s.toUpperCase();
+  if (s.includes('SOLD') || s.includes('CLOSED')) return 'sold';
+  if (s.includes('PENDING') || s.includes('CONTINGENT')) return 'pending';
+  if (s.includes('WITHDRAWN') || s.includes('EXPIRED')) return 'inactive';
+  return 'active';
+}
+
+function extractFeatures(l) {
+  const f = [];
+  if (l.ArchitectureStyle) f.push(l.ArchitectureStyle);
+  if (l.Fireplaces) f.push(`${l.Fireplaces} fireplaces`);
+  if (l.GarageSpaces) f.push(`${l.GarageSpaces}-car garage`);
+  if (l.PoolFeatures) f.push('Pool');
+  if (l.WaterfrontFlag) f.push('Waterfront');
+  if (l.View) f.push(l.View);
+  if (l.HOAFee) f.push(`HOA $${l.HOAFee}/mo`);
+  return f;
+}
+
+function formatDate(d) {
+  if (!d) return null;
+  const date = new Date(d);
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
 // ============ State ============
 // Default to PBC real data; localStorage overrides for admin-added listings
 let listings = JSON.parse(localStorage.getItem('homesByHadarListings')) || [...pbcListings];
@@ -295,7 +497,24 @@ let favorites = JSON.parse(localStorage.getItem('homesByHadarFavorites')) || [];
 let currentView = 'grid';
 
 // ============ Init ============
-document.addEventListener('DOMContentLoaded', () => {
+async function initApp() {
+  try {
+    // If MLS is configured, load live data
+    if (dataSourceConfig.dataSource === 'mls' && dataSourceConfig.mlsApiKey && dataSourceConfig.mlsEndpoint) {
+      const mlsData = await fetchMLSListings();
+      if (mlsData && mlsData.length > 0) {
+        listings = mlsData;
+        // Don't override localStorage if user has admin entries
+        const stored = localStorage.getItem('homesByHadarListings');
+        if (!stored) {
+          localStorage.setItem('homesByHadarListings', JSON.stringify(mlsData));
+        }
+      }
+    }
+    // PBC data loads as default via state init
+  } catch (e) {
+    console.warn('MLS fetch failed, using PBC data:', e);
+  }
   renderListings();
   setupSearch();
   setupNavigation();
@@ -305,7 +524,9 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMobileNav();
   setupSearchTabs();
   setupViewToggle();
-});
+}
+
+document.addEventListener('DOMContentLoaded', initApp);
 
 // ============ Navigation ============
 function setupNavigation() {
