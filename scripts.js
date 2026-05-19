@@ -3,7 +3,7 @@
    Search, Listings, Admin CRUD, Modal, Stats
    ============================================ */
 
-// Real PBC Property Appraiser data - fetched 2026-05-08 (no API key needed, public ArcGIS endpoint)
+// Real PBC Property Appraiser data
 // Update this by running: cd ~/.hermes/scripts && python3 build_pbc_listings.py && python3 update_site_data.py
 const pbcListings = [
   {
@@ -17,9 +17,17 @@ const pbcListings = [
     "type": "house",
     "status": "active",
     "year": 2001,
-    "description": "Equestrian estate in Palm Beach Point. 1.74 acres with market value $2,414,077.",
-    "features": ["1.74 acres", "Built 2001", "Market value $2,414,077"],
+    "description": "Built in 2001. 1.74 acres. Market value $2,414,077",
+    "features": [
+      "1.74 acres",
+      "Built 2001",
+      "Market value $2,414,077"
+    ],
     "image": "",
+    "parid": "73414408010280020",
+    "owner": "EMILY VERNON FOUNDATION FOR",
+    "market_value": 2414077,
+    "sale_date": "Aug 01, 2024",
     "acres": 1.74,
     "source": "PBC Property Appraiser"
   },
@@ -34,9 +42,17 @@ const pbcListings = [
     "type": "house",
     "status": "pending",
     "year": 1982,
-    "description": "Wellness community home in Somerset. 0.35 acres, market value $1,882,435.",
-    "features": ["0.35 acres", "Built 1982", "Market value $1,882,435"],
+    "description": "Built in 1982. 0.35 acres. Market value $1,882,435",
+    "features": [
+      "0.35 acres",
+      "Built 1982",
+      "Market value $1,882,435"
+    ],
     "image": "",
+    "parid": "73414414070000130",
+    "owner": "YOZELL JOHN &",
+    "market_value": 1882435,
+    "sale_date": "Feb 23, 2025",
     "acres": 0.35,
     "source": "PBC Property Appraiser"
   },
@@ -51,9 +67,17 @@ const pbcListings = [
     "type": "house",
     "status": "active",
     "year": 1995,
-    "description": "Equestrian estate with 2.33 acres and $2M+ market value. Walking distance to WEF.",
-    "features": ["2.33 acres", "Built 1995", "Market value $2,033,554"],
+    "description": "Built in 1995. 2.33 acres. Market value $2,033,554",
+    "features": [
+      "2.33 acres",
+      "Built 1995",
+      "Market value $2,033,554"
+    ],
     "image": "",
+    "parid": "73414408010380070",
+    "owner": "MORTENSON MOLLY &",
+    "market_value": 2033554,
+    "sale_date": "Feb 19, 2025",
     "acres": 2.33,
     "source": "PBC Property Appraiser"
   },
@@ -68,9 +92,17 @@ const pbcListings = [
     "type": "house",
     "status": "pending",
     "year": 1997,
-    "description": "10+ acre equestrian estate in sought-after location. $9M+ market value.",
-    "features": ["10.56 acres", "Built 1997", "Market value $9,090,409"],
+    "description": "Built in 1997. 10.56 acres. Market value $9,090,409",
+    "features": [
+      "10.56 acres",
+      "Built 1997",
+      "Market value $9,090,409"
+    ],
     "image": "",
+    "parid": "73414419010080070",
+    "owner": "HOGAN SARA G &",
+    "market_value": 9090409,
+    "sale_date": "Jul 20, 2015",
     "acres": 10.56,
     "source": "PBC Property Appraiser"
   },
@@ -85,9 +117,17 @@ const pbcListings = [
     "type": "house",
     "status": "active",
     "year": 2006,
-    "description": "Luxury home in Grand Prix Farms. 0.47 acres, market value $3.8M.",
-    "features": ["0.47 acres", "Built 2006", "Market value $3,866,132"],
+    "description": "Built in 2006. 0.47 acres. Market value $3,866,132",
+    "features": [
+      "0.47 acres",
+      "Built 2006",
+      "Market value $3,866,132"
+    ],
     "image": "",
+    "parid": "73414415180000080",
+    "owner": "SANFORD KEVIN R",
+    "market_value": 3866132,
+    "sale_date": "Apr 28, 2015",
     "acres": 0.47,
     "source": "PBC Property Appraiser"
   },
@@ -102,9 +142,17 @@ const pbcListings = [
     "type": "house",
     "status": "pending",
     "year": 2000,
-    "description": "Grand Prix Farms estate. 0.69 acres with $3.7M market value.",
-    "features": ["0.69 acres", "Built 2000", "Market value $3,774,768"],
+    "description": "Built in 2000. 0.69 acres. Market value $3,774,768",
+    "features": [
+      "0.69 acres",
+      "Built 2000",
+      "Market value $3,774,768"
+    ],
     "image": "",
+    "parid": "73414415180000190",
+    "owner": "MEYER ELIZABETH D 1994 TRUST",
+    "market_value": 3774768,
+    "sale_date": "May 25, 2009",
     "acres": 0.69,
     "source": "PBC Property Appraiser"
   },
@@ -119,27 +167,140 @@ const pbcListings = [
     "type": "house",
     "status": "active",
     "year": null,
-    "description": "5-acre equestrian property in Palm Beach Point. $2.7M market value.",
-    "features": ["5.00 acres", "Market value $2,752,919"],
+    "description": "5.00 acres. Market value $2,752,919",
+    "features": [
+      "5.00 acres",
+      "Market value $2,752,919"
+    ],
     "image": "",
+    "parid": "73414429010000070",
+    "owner": "LCR PBP WEST LLC",
+    "market_value": 2752919,
+    "sale_date": "Mar 27, 2018",
     "acres": 5.0,
     "source": "PBC Property Appraiser"
   },
   {
-    "id": "pbc_73414417010580050",
-    "address": "2904 APPALOOSA TRL",
+    "id": "pbc_73414429010000080",
+    "address": "14390 PALM BEACH POINT BLVD",
     "city": "Wellington, FL 33414",
-    "price": 2850000,
+    "price": 2900000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "pending",
+    "year": 1985,
+    "description": "Built in 1985. 5.00 acres. Market value $3,796,766",
+    "features": [
+      "5.00 acres",
+      "Built 1985",
+      "Market value $3,796,766"
+    ],
+    "image": "",
+    "parid": "73414429010000080",
+    "owner": "LCR PBP WEST LLC",
+    "market_value": 3796766,
+    "sale_date": "Mar 27, 2018",
+    "acres": 5.0,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414422020000020",
+    "address": "12991 VIA CHRISTINA",
+    "city": "Wellington, FL 33414",
+    "price": 2900000,
     "beds": null,
     "baths": null,
     "sqft": null,
     "type": "house",
     "status": "active",
-    "year": 1987,
-    "description": "Equestrian estate on 2+ acres. Built 1987, $2.4M market value.",
-    "features": ["2.10 acres", "Built 1987", "Market value $2,394,045"],
+    "year": null,
+    "description": "Market value $1,314,856",
+    "features": [
+      "Market value $1,314,856"
+    ],
     "image": "",
-    "acres": 2.1,
+    "parid": "73414422020000020",
+    "owner": "TIERRA CONTENTA LLC",
+    "market_value": 1314856,
+    "sale_date": "Jan 02, 2023",
+    "acres": null,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414415180000320",
+    "address": "2496 MIZNER LAKE CT",
+    "city": "Wellington, FL 33414",
+    "price": 2895000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "pending",
+    "year": 2006,
+    "description": "Built in 2006. 0.32 acres. Market value $2,567,985",
+    "features": [
+      "0.32 acres",
+      "Built 2006",
+      "Market value $2,567,985"
+    ],
+    "image": "",
+    "parid": "73414415180000320",
+    "owner": "MOTT MILO I",
+    "market_value": 2567985,
+    "sale_date": "Aug 10, 2006",
+    "acres": 0.32,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414429010000100",
+    "address": "14310 PALM BEACH POINT BLVD",
+    "city": "Wellington, FL 33414",
+    "price": 2885000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "active",
+    "year": 2004,
+    "description": "Built in 2004. 5.52 acres. Market value $4,242,326",
+    "features": [
+      "5.52 acres",
+      "Built 2004",
+      "Market value $4,242,326"
+    ],
+    "image": "",
+    "parid": "73414429010000100",
+    "owner": "4 WINDS FARM LLC",
+    "market_value": 4242326,
+    "sale_date": "Sep 02, 2013",
+    "acres": 5.52,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414420050000050",
+    "address": "3500 AMBASSADOR RD",
+    "city": "Wellington, FL 33414",
+    "price": 2875000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "pending",
+    "year": 2002,
+    "description": "Built in 2002. 1.00 acres. Market value $10,570,550",
+    "features": [
+      "1.00 acres",
+      "Built 2002",
+      "Market value $10,570,550"
+    ],
+    "image": "",
+    "parid": "73414420050000050",
+    "owner": "AMBASSADOR ROAD LLC",
+    "market_value": 10570550,
+    "sale_date": "May 25, 2016",
+    "acres": 1.0,
     "source": "PBC Property Appraiser"
   },
   {
@@ -153,10 +314,68 @@ const pbcListings = [
     "type": "house",
     "status": "active",
     "year": 2022,
-    "description": "New construction in橡树岭社区. 0.18 acres, $2.9M market value.",
-    "features": ["0.18 acres", "Built 2022", "Market value $2,898,399"],
+    "description": "Built in 2022. 0.18 acres. Market value $2,898,399",
+    "features": [
+      "0.18 acres",
+      "Built 2022",
+      "Market value $2,898,399"
+    ],
     "image": "",
+    "parid": "73414415230000130",
+    "owner": "HACKER MARK S &",
+    "market_value": 2898399,
+    "sale_date": "Aug 14, 2022",
     "acres": 0.18,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414414060000270",
+    "address": "11949 MAIDSTONE DR",
+    "city": "Wellington, FL 33414",
+    "price": 2850000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "pending",
+    "year": 1986,
+    "description": "Built in 1986. 0.52 acres. Market value $2,378,963",
+    "features": [
+      "0.52 acres",
+      "Built 1986",
+      "Market value $2,378,963"
+    ],
+    "image": "",
+    "parid": "73414414060000270",
+    "owner": "TR MAIDSTONE LLC",
+    "market_value": 2378963,
+    "sale_date": "Mar 16, 2026",
+    "acres": 0.52,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414417010580050",
+    "address": "2904 APPALOOSA TRL",
+    "city": "Wellington, FL 33414",
+    "price": 2850000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "active",
+    "year": 1987,
+    "description": "Built in 1987. 2.10 acres. Market value $2,394,045",
+    "features": [
+      "2.10 acres",
+      "Built 1987",
+      "Market value $2,394,045"
+    ],
+    "image": "",
+    "parid": "73414417010580050",
+    "owner": "STIRBL STEVEN",
+    "market_value": 2394045,
+    "sale_date": "Jul 07, 2022",
+    "acres": 2.1,
     "source": "PBC Property Appraiser"
   },
   {
@@ -170,12 +389,19 @@ const pbcListings = [
     "type": "house",
     "status": "sold",
     "year": 2008,
-    "description": "SOLD - 5.62 acre luxury estate. $8.5M market value.",
-    "features": ["5.62 acres", "Built 2008", "Market value $8,485,689"],
+    "description": "Built in 2008. 5.62 acres. Market value $8,485,689",
+    "features": [
+      "5.62 acres",
+      "Built 2008",
+      "Market value $8,485,689"
+    ],
     "image": "",
+    "parid": "73414420090000170",
+    "owner": "3436 GRAND PRIX FARMS DRIVE LLC",
+    "market_value": 8485689,
+    "sale_date": "Mar 11, 2026",
     "acres": 5.62,
-    "source": "PBC Property Appraiser",
-    "sale_date": "Mar 11, 2026"
+    "source": "PBC Property Appraiser"
   },
   {
     "id": "pbc_73414415210000280",
@@ -188,12 +414,19 @@ const pbcListings = [
     "type": "house",
     "status": "sold",
     "year": 2020,
-    "description": "SOLD - 0.64 acre, recently built luxury. $5.9M market value.",
-    "features": ["0.64 acres", "Built 2020", "Market value $5,889,931"],
+    "description": "Built in 2020. 0.64 acres. Market value $5,889,931",
+    "features": [
+      "0.64 acres",
+      "Built 2020",
+      "Market value $5,889,931"
+    ],
     "image": "",
+    "parid": "73414415210000280",
+    "owner": "2520 WELLINGTON LLC",
+    "market_value": 5889931,
+    "sale_date": "Feb 18, 2026",
     "acres": 0.64,
-    "source": "PBC Property Appraiser",
-    "sale_date": "Feb 18, 2026"
+    "source": "PBC Property Appraiser"
   },
   {
     "id": "pbc_73414419010050180",
@@ -206,30 +439,19 @@ const pbcListings = [
     "type": "house",
     "status": "sold",
     "year": 2002,
-    "description": "SOLD - 7+ acre equestrian estate. $6.5M market value.",
-    "features": ["7.17 acres", "Built 2002", "Market value $6,528,079"],
+    "description": "Built in 2002. 7.17 acres. Market value $6,528,079",
+    "features": [
+      "7.17 acres",
+      "Built 2002",
+      "Market value $6,528,079"
+    ],
     "image": "",
+    "parid": "73414419010050180",
+    "owner": "JOKER REAL ESTATE LIMITED PARTNERSHIP",
+    "market_value": 6528079,
+    "sale_date": "Apr 07, 2026",
     "acres": 7.17,
-    "source": "PBC Property Appraiser",
-    "sale_date": "Apr 07, 2026"
-  },
-  {
-    "id": "pbc_73414433000001210",
-    "address": "13320 52ND PL S",
-    "city": "Wellington, FL 33414",
-    "price": 11000000,
-    "beds": null,
-    "baths": null,
-    "sqft": null,
-    "type": "house",
-    "status": "sold",
-    "year": 1997,
-    "description": "SOLD - 10+ acre property with $7.8M market value.",
-    "features": ["10.33 acres", "Built 1997", "Market value $7,783,482"],
-    "image": "",
-    "acres": 10.33,
-    "source": "PBC Property Appraiser",
-    "sale_date": "Nov 11, 2025"
+    "source": "PBC Property Appraiser"
   },
   {
     "id": "pbc_73414415210000040",
@@ -242,12 +464,19 @@ const pbcListings = [
     "type": "house",
     "status": "sold",
     "year": 2016,
-    "description": "SOLD - 0.62 acre in Cypress Island. $7.3M market value.",
-    "features": ["0.62 acres", "Built 2016", "Market value $7,287,422"],
+    "description": "Built in 2016. 0.62 acres. Market value $7,287,422",
+    "features": [
+      "0.62 acres",
+      "Built 2016",
+      "Market value $7,287,422"
+    ],
     "image": "",
+    "parid": "73414415210000040",
+    "owner": "WINTER CIRCUIT LLC",
+    "market_value": 7287422,
+    "sale_date": "Mar 29, 2026",
     "acres": 0.62,
-    "source": "PBC Property Appraiser",
-    "sale_date": "Mar 29, 2026"
+    "source": "PBC Property Appraiser"
   },
   {
     "id": "pbc_73414419010030010",
@@ -260,745 +489,142 @@ const pbcListings = [
     "type": "house",
     "status": "sold",
     "year": 2003,
-    "description": "SOLD - 5.74 acre estate with $5.7M market value.",
-    "features": ["5.74 acres", "Built 2003", "Market value $5,731,052"],
+    "description": "Built in 2003. 5.74 acres. Market value $5,731,052",
+    "features": [
+      "5.74 acres",
+      "Built 2003",
+      "Market value $5,731,052"
+    ],
     "image": "",
+    "parid": "73414419010030010",
+    "owner": "HASEOTES VASILIOS S II",
+    "market_value": 5731052,
+    "sale_date": "Dec 09, 2025",
     "acres": 5.74,
-    "source": "PBC Property Appraiser",
-    "sale_date": "Dec 09, 2025"
+    "source": "PBC Property Appraiser"
   },
   {
-    "id": "pbc_73414421030030020",
-    "address": "13125 SOUTHFIELDS RD",
+    "id": "pbc_73414415210000120",
+    "address": "12381 CYPRESS ISLAND WAY",
     "city": "Wellington, FL 33414",
-    "price": 9270000,
+    "price": 8000000,
     "beds": null,
     "baths": null,
     "sqft": null,
     "type": "house",
     "status": "sold",
-    "year": 1982,
-    "description": "SOLD - 1.38 acre equestrian estate in Southfields. $3.2M market value.",
-    "features": ["1.38 acres", "Built 1982", "Market value $3,188,011"],
+    "year": 2017,
+    "description": "Built in 2017. 0.56 acres. Market value $7,130,943",
+    "features": [
+      "0.56 acres",
+      "Built 2017",
+      "Market value $7,130,943"
+    ],
     "image": "",
-    "acres": 1.38,
-    "source": "PBC Property Appraiser",
-    "sale_date": "Feb 24, 2026"
+    "parid": "73414415210000120",
+    "owner": "GOUTAL JEAN",
+    "market_value": 7130943,
+    "sale_date": "Mar 23, 2026",
+    "acres": 0.56,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414417010540040",
+    "address": "2017 APPALOOSA TRL",
+    "city": "Wellington, FL 33414",
+    "price": 8000000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 1995,
+    "description": "Built in 1995. Market value $4,720,210",
+    "features": [
+      "Built 1995",
+      "Market value $4,720,210"
+    ],
+    "image": "",
+    "parid": "73414417010540040",
+    "owner": "ORANGE BLOSSOM FARM HOLDING INC",
+    "market_value": 4720210,
+    "sale_date": "Dec 10, 2025",
+    "acres": null,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414417010670010",
+    "address": "14169 BELMONT TRCE",
+    "city": "Wellington, FL 33414",
+    "price": 7500000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 1993,
+    "description": "Built in 1993. 4.08 acres. Market value $5,163,476",
+    "features": [
+      "4.08 acres",
+      "Built 1993",
+      "Market value $5,163,476"
+    ],
+    "image": "",
+    "parid": "73414417010670010",
+    "owner": "BLUEBONNET FARM LLC",
+    "market_value": 5163476,
+    "sale_date": "Apr 29, 2026",
+    "acres": 4.08,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414419010050190",
+    "address": "15231 SUNNYLAND LN",
+    "city": "Wellington, FL 33414",
+    "price": 7200000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 2010,
+    "description": "Built in 2010. 5.92 acres. Market value $6,585,534",
+    "features": [
+      "5.92 acres",
+      "Built 2010",
+      "Market value $6,585,534"
+    ],
+    "image": "",
+    "parid": "73414419010050190",
+    "owner": "VATTEROTT PATRICIA S",
+    "market_value": 6585534,
+    "sale_date": "Nov 25, 2025",
+    "acres": 5.92,
+    "source": "PBC Property Appraiser"
+  },
+  {
+    "id": "pbc_73414414330000050",
+    "address": "2600 FAIRWAY ISLAND DR",
+    "city": "Wellington, FL 33414",
+    "price": 6180000,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "type": "house",
+    "status": "sold",
+    "year": 1989,
+    "description": "Built in 1989. 0.55 acres. Market value $3,674,614",
+    "features": [
+      "0.55 acres",
+      "Built 1989",
+      "Market value $3,674,614"
+    ],
+    "image": "",
+    "parid": "73414414330000050",
+    "owner": "GALENA HOLLOW 2600 LLC",
+    "market_value": 3674614,
+    "sale_date": "Apr 20, 2026",
+    "acres": 0.55,
+    "source": "PBC Property Appraiser"
   }
 ];
-
-// ============ MLS/IDX Data Source Config ============
-// Supports: 'pbc' (default, free county data) or 'mls' (if API key provided)
-// To enable MLS: set dataSource = 'mls', add your API key and endpoint
-// MLS providers: flexmls/Spark API, IDX Broker, Real Estate Webmasters, WolfNet, etc.
-// Most require KW franchise agreement or agent MLS membership
-const dataSourceConfig = {
-  dataSource: 'pbc',  // 'pbc' = Palm Beach County (free), 'mls' = MLS API (requires key)
-  // === MLS API Settings (fill in if dataSource = 'mls') ===
-  mlsApiKey: '',          // Your MLS/IDX provider API key
-  mlsEndpoint: '',        // e.g. 'https://api.flexmls.com/v1.0/', 'https://api.idxbroker.com/'
-  mlsApiKeyHeader: '',    // e.g. 'Authorization: Basic', 'X-Api-Key', 'ApiKey'
-  // Flexmls/Spark API example:
-  // mlsEndpoint: 'https://api.sparkplatform.com/',
-  // mlsApiKey: 'your-spark-api-key',
-  // mlsApiKeyHeader: 'Authorization: Bearer',
-  // IDX Broker example:
-  // mlsEndpoint: 'https://api.idxbroker.com/v2/',
-  // mlsApiKey: 'your-idx-api-key',
-  // mlsApiKeyHeader: 'X-Api-Key',
-  // === PBC County (always available, no key needed) ===
-  pbcRegion: 'WELLINGTON',  // or 'PALM BEACH', 'BOCA RATON', etc.
-  pbcZipCodes: ['33414', '33467', '33470', '33472', '33483'],
-  pbcMinPrice: 300000,
-  pbcMaxPrice: 20000000
-};
-
-// ============ MLS Data Fetcher ============
-async function fetchMLSListings() {
-  const { dataSource, mlsApiKey, mlsEndpoint, mlsApiKeyHeader } = dataSourceConfig;
-  
-  if (dataSource === 'mls' && mlsApiKey && mlsEndpoint) {
-    // Flexmls/Spark API
-    if (mlsEndpoint.includes('sparkplatform') || mlsEndpoint.includes('flexmls')) {
-      const headers = {};
-      if (mlsApiKeyHeader) {
-        const [headerName, headerType] = mlsApiKeyHeader.split(': ');
-        if (headerType === 'Bearer') headers[headerName] = `Bearer ${mlsApiKey}`;
-        else if (headerType === 'Basic') headers[headerName] = `Basic ${mlsApiKey}`;
-        else headers[headerName || 'X-Api-Key'] = mlsApiKey;
-      } else {
-        headers['Authorization'] = `Bearer ${mlsApiKey}`;
-      }
-      headers['Accept'] = 'application/json';
-      
-      // Search active listings in Wellington FL
-      const params = new URLSearchParams({
-        'Location': 'Wellington, FL',
-        'Status': 'Active',
-        'Limit': '50',
-        'expand[]': 'Photos,Rooms'
-      });
-      
-      const resp = await fetch(`${mlsEndpoint}listings?${params}`, { headers });
-      if (!resp.ok) throw new Error(`MLS API error: ${resp.status}`);
-      const data = await resp.json();
-      return normalizeMLSData(data);
-    }
-    
-    // IDX Broker
-    if (mlsEndpoint.includes('idxbroker')) {
-      const headers = { 'accesskey': mlsApiKey, 'Accept': 'application/json' };
-      const resp = await fetch(`${mlsEndpoint}properties?limit=50&city=Wellington&state=FL`, { headers });
-      if (!resp.ok) throw new Error(`IDX API error: ${resp.status}`);
-      const data = await resp.json();
-      return normalizeIDXData(data);
-    }
-    
-    // Generic RESO Web API
-    const headers = {};
-    if (mlsApiKey) headers[mlsApiKeyHeader.split(':')[0] || 'X-Api-Key'] = mlsApiKey;
-    headers['Accept'] = 'application/json';
-    const resp = await fetch(`${mlsEndpoint}listings?$filter=City eq 'Wellington'&$top=50`, { headers });
-    if (!resp.ok) throw new Error(`MLS API error: ${resp.status}`);
-    const data = await resp.json();
-    return normalizeRESOData(data);
-  }
-  
-  // Fall back to PBC county data (no key needed)
-  return fetchPBCListings();
-}
-
-function normalizeMLSData(data) {
-  // Flexmls/Spark API normalization
-  if (!data.Results) return [];
-  return data.Results.map(l => ({
-    id: `mls_${l.ListingKey}`,
-    address: l.UnparsedAddress || l.StreetNumber + ' ' + l.StreetName,
-    city: `${l.City || 'Wellington'}, FL ${l.PostalCode || '33414'}`,
-    price: l.ListPrice,
-    beds: l.BedroomsTotal || null,
-    baths: l.BathroomsFull || l.BathroomsTotal || null,
-    sqft: l.LivingArea || null,
-    type: mapPropertyType(l.PropertyType),
-    status: mapStatus(l.Status),
-    year: l.YearBuilt || null,
-    description: l.PublicRemarks || '',
-    features: extractFeatures(l),
-    images: l.Photos ? l.Photos.map(p => p.Uri) : [],
-    image: l.Photos && l.Photos[0] ? l.Photos[0].Uri : '',
-    acres: l.LotSizeAcres || null,
-    source: 'MLS',
-    mlsNumber: l.ListingKey,
-    listDate: l.ListingContractDate,
-    soldDate: l.CloseDate ? formatDate(l.CloseDate) : null,
-    garage: l.GarageSpaces || null,
-    pool: l.PoolFeatures ? 'Yes' : null,
-    hoa: l.HOAFee ? `$${l.HOAFee}/mo` : null
-  }));
-}
-
-function normalizeIDXData(data) {
-  if (!data.listings) return [];
-  return data.listings.map(l => ({
-    id: `idx_${l.listingID}`,
-    address: l.address,
-    city: `${l.city}, FL ${l.zipcode}`,
-    price: parseInt(l.price),
-    beds: parseInt(l.beds) || null,
-    baths: parseFloat(l.baths) || null,
-    sqft: parseInt(l.sqft) || null,
-    type: mapPropertyType(l.propType),
-    status: mapStatus(l.status),
-    year: parseInt(l.yearBuilt) || null,
-    description: l.description,
-    features: l.features || [],
-    image: l.image,
-    images: l.images || [],
-    acres: parseFloat(l.acres) || null,
-    source: 'MLS',
-    mlsNumber: l.listingID,
-    listDate: l.dateListed,
-    soldDate: l.soldDate || null
-  }));
-}
-
-function normalizeRESOData(data) {
-  // Handle OData or standard RESO format
-  const items = data.value || data.d || data.Results || [];
-  return items.map(l => ({
-    id: `mls_${l.ListingKey || l.Id}`,
-    address: l.UnparsedAddress || l.StreetAddress,
-    city: `${l.City || 'Wellington'}, FL ${l.PostalCode}`,
-    price: l.ListPrice || l.Price,
-    beds: l.Bedrooms || l.BedroomsTotal,
-    baths: l.Bathrooms || l.BathroomsFull || l.BathroomsTotal,
-    sqft: l.LivingArea || l.BuildingAreaTotal,
-    type: mapPropertyType(l.PropertyType),
-    status: mapStatus(l.Status),
-    year: l.YearBuilt,
-    description: l.PublicRemarks || l.Description,
-    features: [],
-    images: (l.Media || []).map(m => m.MediaURL || m.Uri),
-    image: (l.Media && l.Media[0] ? l.Media[0].MediaURL : ''),
-    acres: l.LotSizeAcres,
-    source: 'MLS',
-    mlsNumber: l.ListingKey || l.ListingId,
-    listDate: l.ListingContractDate,
-    soldDate: l.CloseDate
-  }));
-}
-
-async function fetchPBCListings() {
-  // Return embedded PBC data (already loaded)
-  return pbcListings.map(l => ({ ...l }));
-}
-
-function mapPropertyType(t) {
-  if (!t) return 'house';
-  t = t.toUpperCase();
-  if (t.includes('CONDO') || t.includes('TOWNHOUSE')) return 'condo';
-  if (t.includes('MOBILE') || t.includes('MANUFACTURED')) return 'house';
-  if (t.includes('LAND') || t.includes('LOT')) return 'land';
-  return 'house';
-}
-
-function mapStatus(s) {
-  if (!s) return 'active';
-  s = s.toUpperCase();
-  if (s.includes('SOLD') || s.includes('CLOSED')) return 'sold';
-  if (s.includes('PENDING') || s.includes('CONTINGENT')) return 'pending';
-  if (s.includes('WITHDRAWN') || s.includes('EXPIRED')) return 'inactive';
-  return 'active';
-}
-
-function extractFeatures(l) {
-  const f = [];
-  if (l.ArchitectureStyle) f.push(l.ArchitectureStyle);
-  if (l.Fireplaces) f.push(`${l.Fireplaces} fireplaces`);
-  if (l.GarageSpaces) f.push(`${l.GarageSpaces}-car garage`);
-  if (l.PoolFeatures) f.push('Pool');
-  if (l.WaterfrontFlag) f.push('Waterfront');
-  if (l.View) f.push(l.View);
-  if (l.HOAFee) f.push(`HOA $${l.HOAFee}/mo`);
-  return f;
-}
-
-function formatDate(d) {
-  if (!d) return null;
-  const date = new Date(d);
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-}
-
-// ============ State ============
-// Default to PBC real data; localStorage overrides for admin-added listings
-let listings = JSON.parse(localStorage.getItem('homesByHadarListings')) || [...pbcListings];
-let currentFilters = {};
-let favorites = JSON.parse(localStorage.getItem('homesByHadarFavorites')) || [];
-let currentView = 'grid';
-
-// ============ Init ============
-async function initApp() {
-  try {
-    // If MLS is configured, load live data
-    if (dataSourceConfig.dataSource === 'mls' && dataSourceConfig.mlsApiKey && dataSourceConfig.mlsEndpoint) {
-      const mlsData = await fetchMLSListings();
-      if (mlsData && mlsData.length > 0) {
-        listings = mlsData;
-        // Don't override localStorage if user has admin entries
-        const stored = localStorage.getItem('homesByHadarListings');
-        if (!stored) {
-          localStorage.setItem('homesByHadarListings', JSON.stringify(mlsData));
-        }
-      }
-    }
-    // PBC data loads as default via state init
-  } catch (e) {
-    console.warn('MLS fetch failed, using PBC data:', e);
-  }
-  renderListings();
-  setupSearch();
-  setupNavigation();
-  setupAdmin();
-  setupContactForm();
-  animateStats();
-  setupMobileNav();
-  setupSearchTabs();
-  setupViewToggle();
-}
-
-document.addEventListener('DOMContentLoaded', initApp);
-
-// ============ Navigation ============
-function setupNavigation() {
-  document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      if (href === '#admin') {
-        e.preventDefault();
-        showAdmin();
-        return;
-      }
-      // Close mobile nav
-      document.getElementById('navLinks').classList.remove('open');
-    });
-  });
-}
-
-function setupMobileNav() {
-  const toggle = document.getElementById('navToggle');
-  const links = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-}
-
-// ============ Search ============
-function setupSearch() {
-  const searchBtn = document.getElementById('searchBtn');
-  searchBtn.addEventListener('click', performSearch);
-  
-  document.getElementById('searchLocation').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') performSearch();
-  });
-}
-
-function setupSearchTabs() {
-  document.querySelectorAll('.search-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
-}
-
-function setupViewToggle() {
-  document.querySelectorAll('.view-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const view = btn.dataset.view;
-      currentView = view;
-      const grid = document.getElementById('listingsGrid');
-      grid.classList.toggle('list-view', view === 'list');
-    });
-  });
-}
-
-function performSearch() {
-  const location = document.getElementById('searchLocation').value.toLowerCase().trim();
-  const priceRange = document.getElementById('searchPrice').value;
-  const beds = document.getElementById('searchBeds').value;
-  const baths = document.getElementById('searchBaths').value;
-  const type = document.getElementById('searchType').value;
-
-  const filters = {};
-  if (location) filters.location = location;
-  if (priceRange) {
-    const [min, max] = priceRange.split('-').map(Number);
-    filters.price = { min, max };
-  }
-  if (beds) filters.beds = parseInt(beds);
-  if (baths) filters.baths = parseFloat(baths);
-  if (type) filters.type = type;
-
-  currentFilters = filters;
-  
-  const results = filterListings(listings, filters);
-  renderListings(results);
-  
-  const countEl = document.getElementById('searchResultsCount');
-  countEl.style.display = 'block';
-  countEl.textContent = results.length === listings.length 
-    ? `${results.length} properties shown` 
-    : `${results.length} of ${listings.length} properties match your search`;
-}
-
-function filterListings(lst, filters) {
-  return lst.filter(prop => {
-    // Location filter
-    if (filters.location) {
-      const loc = filters.location.toLowerCase();
-      if (!prop.address.toLowerCase().includes(loc) && 
-          !prop.city.toLowerCase().includes(loc)) return false;
-    }
-    // Price filter
-    if (filters.price) {
-      if (prop.price < filters.price.min || prop.price > filters.price.max) return false;
-    }
-    // Beds filter
-    if (filters.beds && prop.beds < filters.beds) return false;
-    // Baths filter
-    if (filters.baths && prop.baths < filters.baths) return false;
-    // Type filter
-    if (filters.type && prop.type !== filters.type) return false;
-    return true;
-  });
-}
-
-function resetFilters() {
-  document.getElementById('searchLocation').value = '';
-  document.getElementById('searchPrice').value = '';
-  document.getElementById('searchBeds').value = '';
-  document.getElementById('searchBaths').value = '';
-  document.getElementById('searchType').value = '';
-  currentFilters = {};
-  document.getElementById('searchResultsCount').style.display = 'none';
-  renderListings();
-}
-
-// ============ Listings Render ============
-function renderListings(lst) {
-  const sortBy = document.getElementById('sortListings')?.value || 'newest';
-  let data = lst || [...listings];
-  
-  // Sort
-  data = sortListings(data, sortBy);
-  
-  // Filter by status (admin sees all, public sees active+pending)
-  const isAdmin = document.getElementById('admin').style.display !== 'none';
-  if (!isAdmin) {
-    data = data.filter(p => p.status !== 'sold');
-  }
-
-  const grid = document.getElementById('listingsGrid');
-  const noResults = document.getElementById('noResults');
-
-  if (data.length === 0) {
-    grid.style.display = 'none';
-    noResults.style.display = 'block';
-    return;
-  }
-
-  grid.style.display = 'grid';
-  noResults.style.display = 'none';
-
-  grid.innerHTML = data.map(prop => `
-    <div class="listing-card" onclick="openPropertyModal('${prop.id}')">
-      <div class="listing-image">
-        <img src="${prop.image || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80'}" alt="${prop.address}" loading="lazy">
-        ${prop.status === 'sold' ? `<span class="listing-badge sold">Sold${prop.sale_date ? ' - ' + prop.sale_date : (prop.soldDate ? ' - ' + prop.soldDate : '')}</span>` : (prop.status !== 'active' ? `<span class="listing-badge ${prop.status}">${prop.status.charAt(0).toUpperCase() + prop.status.slice(1)}</span>` : '')}
-        ${prop.status !== 'sold' ? `<button class="listing-favorite" onclick="event.stopPropagation(); toggleFavorite('${prop.id}')" aria-label="Favorite">
-          ${favorites.includes(prop.id) ? '❤️' : '🤍'}
-        </button>` : ''}
-        ${prop.images && prop.images.length > 1 ? `
-          <button class="listing-image-nav prev" onclick="event.stopPropagation(); navigateImage('${prop.id}', -1)"><i class="fas fa-chevron-left"></i></button>
-          <button class="listing-image-nav next" onclick="event.stopPropagation(); navigateImage('${prop.id}', 1)"><i class="fas fa-chevron-right"></i></button>
-          <div class="listing-image-dots">${prop.images.map((_, i) => `<span class="listing-image-dot ${i === 0 ? 'active' : ''}"></span>`).join('')}</div>
-        ` : ''}
-      </div>
-      <div class="listing-body">
-        <div class="listing-price">${formatPrice(prop.price)}</div>
-        <div class="listing-address">${prop.address}</div>
-        <div class="listing-city">${prop.city}</div>
-        <div class="listing-details">
-          ${prop.beds ? `<span class="listing-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 22V8l9-6 9 6v14H3z"/><path d="M9 22V12h6v10"/></svg>
-            ${prop.beds} beds
-          </span>` : ''}
-          ${prop.baths ? `<span class="listing-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7M4 12V5a2 2 0 012-2h3l2 2h8a2 2 0 012 2v7"/></svg>
-            ${prop.baths} baths
-          </span>` : ''}
-          ${prop.sqft ? `<span class="listing-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            ${prop.sqft.toLocaleString()} sqft
-          </span>` : ''}
-          ${prop.acres ? `<span class="listing-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM3 9h18M9 21V9"/></svg>
-            ${prop.acres} acres
-          </span>` : ''}
-        </div>
-        <div class="listing-courtesy">Listing Courtesy of: Keller Williams Realty - Wellington</div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function sortListings(data, sortBy) {
-  const sorted = [...data];
-  switch (sortBy) {
-    case 'price-asc': sorted.sort((a, b) => a.price - b.price); break;
-    case 'price-desc': sorted.sort((a, b) => b.price - a.price); break;
-    case 'beds': sorted.sort((a, b) => b.beds - a.beds); break;
-    case 'sqft': sorted.sort((a, b) => (b.sqft || 0) - (a.sqft || 0)); break;
-    case 'newest': sorted.sort((a, b) => a.id.localeCompare(b.id)); break; // simple proxy for new
-  }
-  return sorted;
-}
-
-// Sort change listener
-document.addEventListener('DOMContentLoaded', () => {
-  const sortEl = document.getElementById('sortListings');
-  if (sortEl) sortEl.addEventListener('change', () => renderListings(filterListings(listings, currentFilters)));
-});
-
-// ============ Favorites ============
-function toggleFavorite(id) {
-  const idx = favorites.indexOf(id);
-  if (idx === -1) favorites.push(id);
-  else favorites.splice(idx, 1);
-  localStorage.setItem('homesByHadarFavorites', JSON.stringify(favorites));
-  renderListings(filterListings(listings, currentFilters));
-}
-
-// ============ Property Modal ============
-function openPropertyModal(id) {
-  const prop = listings.find(p => p.id === id);
-  if (!prop) return;
-
-  const modal = document.getElementById('propertyModal');
-  const body = document.getElementById('modalBody');
-  
-  body.innerHTML = `
-    <div class="prop-modal-image">
-      <img src="${prop.image}" alt="${prop.address}">
-    </div>
-    <div class="prop-modal-header">
-      <div>
-        <div class="prop-modal-price">${formatPrice(prop.price)}</div>
-        <div class="prop-modal-address">${prop.address}</div>
-        <div class="prop-modal-city">${prop.city}</div>
-      </div>
-      ${prop.status !== 'active' ? `<span class="listing-badge ${prop.status}" style="font-size:0.875rem;padding:0.5rem 1rem;">${prop.status.charAt(0).toUpperCase() + prop.status.slice(1)}</span>` : ''}
-    </div>
-    <div class="prop-modal-details">
-      ${prop.beds ? `<div class="prop-modal-detail">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 22V8l9-6 9 6v14H3z"/><path d="M9 22V12h6v10"/></svg>
-        <strong>${prop.beds}</strong> Beds
-      </div>` : ''}
-      ${prop.baths ? `<div class="prop-modal-detail">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7M4 12V5a2 2 0 012-2h3l2 2h8a2 2 0 012 2v7"/></svg>
-        <strong>${prop.baths}</strong> Baths
-      </div>` : ''}
-      ${prop.sqft ? `<div class="prop-modal-detail">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        <strong>${prop.sqft.toLocaleString()}</strong> Sq Ft
-      </div>` : ''}
-      ${prop.year ? `<div class="prop-modal-detail">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Built <strong>${prop.year}</strong>
-      </div>` : ''}
-      <div class="prop-modal-detail">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-        <strong>${prop.type.charAt(0).toUpperCase() + prop.type.slice(1)}</strong>
-      </div>
-    </div>
-    ${prop.description ? `<div class="prop-modal-description">${prop.description}</div>` : ''}
-    ${prop.features && prop.features.length ? `
-    <div class="prop-modal-features">
-      <h4>Features</h4>
-      <ul>
-        ${prop.features.map(f => `<li>${f}</li>`).join('')}
-      </ul>
-    </div>` : ''}
-    <div class="prop-modal-cta">
-      <a href="#contact" class="btn btn-primary" onclick="closeModal()">Schedule a Tour</a>
-      <a href="tel:+15615550196" class="btn btn-outline">📞 Call (561) 555-0196</a>
-    </div>
-  `;
-
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('propertyModal').style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-// Close modal on escape
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-// ============ Stats Animation ============
-function animateStats() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const numbers = entry.target.querySelectorAll('.stat-number');
-        numbers.forEach(el => {
-          const target = parseInt(el.dataset.target);
-          animateNumber(el, target);
-        });
-        observer.disconnect();
-      }
-    });
-  }, { threshold: 0.5 });
-
-  const statsBar = document.querySelector('.stats-bar');
-  if (statsBar) observer.observe(statsBar);
-}
-
-function animateNumber(el, target) {
-  let current = 0;
-  const increment = Math.ceil(target / 40);
-  const timer = setInterval(() => {
-    current += increment;
-    if (current >= target) {
-      el.textContent = target;
-      clearInterval(timer);
-    } else {
-      el.textContent = current;
-    }
-  }, 40);
-}
-
-// ============ Admin ============
-function setupAdmin() {
-  const form = document.getElementById('propertyForm');
-  form.addEventListener('submit', handlePropertySubmit);
-}
-
-function showAdmin() {
-  const admin = document.getElementById('admin');
-  admin.style.display = 'block';
-  admin.scrollIntoView({ behavior: 'smooth' });
-  renderAdminList();
-  // Show listings nav
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-}
-
-function toggleAdmin() {
-  const admin = document.getElementById('admin');
-  admin.style.display = 'none';
-}
-
-function handlePropertySubmit(e) {
-  e.preventDefault();
-  
-  const editId = document.getElementById('editId').value;
-  const prop = {
-    id: editId || 'l' + Date.now(),
-    address: document.getElementById('propAddress').value,
-    city: document.getElementById('propCity').value + ', FL',
-    price: parseInt(document.getElementById('propPrice').value),
-    beds: parseInt(document.getElementById('propBeds').value),
-    baths: parseFloat(document.getElementById('propBaths').value),
-    sqft: parseInt(document.getElementById('propSqft').value) || null,
-    type: document.getElementById('propType').value,
-    status: document.getElementById('propStatus').value,
-    year: parseInt(document.getElementById('propYear').value) || null,
-    description: document.getElementById('propDescription').value,
-    features: document.getElementById('propFeatures').value.split('\n').filter(f => f.trim()),
-    image: document.getElementById('propImage').value || `https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80`
-  };
-
-  if (editId) {
-    const idx = listings.findIndex(p => p.id === editId);
-    if (idx !== -1) listings[idx] = prop;
-  } else {
-    listings.unshift(prop);
-  }
-
-  saveListings();
-  e.target.reset();
-  document.getElementById('editId').value = '';
-  document.getElementById('propSubmitBtn').textContent = 'Add Property';
-  document.getElementById('adminFormTitle').textContent = 'Add New Property';
-  document.getElementById('cancelEditBtn').style.display = 'none';
-  renderListings();
-  renderAdminList();
-}
-
-function editProperty(id) {
-  const prop = listings.find(p => p.id === id);
-  if (!prop) return;
-
-  document.getElementById('editId').value = prop.id;
-  document.getElementById('propAddress').value = prop.address;
-  document.getElementById('propCity').value = prop.city.replace(', FL', '');
-  document.getElementById('propPrice').value = prop.price;
-  document.getElementById('propBeds').value = prop.beds;
-  document.getElementById('propBaths').value = prop.baths;
-  document.getElementById('propSqft').value = prop.sqft || '';
-  document.getElementById('propType').value = prop.type;
-  document.getElementById('propStatus').value = prop.status;
-  document.getElementById('propYear').value = prop.year || '';
-  document.getElementById('propDescription').value = prop.description || '';
-  document.getElementById('propFeatures').value = (prop.features || []).join('\n');
-  document.getElementById('propImage').value = prop.image || '';
-
-  document.getElementById('propSubmitBtn').textContent = 'Update Property';
-  document.getElementById('adminFormTitle').textContent = 'Edit Property';
-  document.getElementById('cancelEditBtn').style.display = 'inline-flex';
-  document.getElementById('propertyForm').scrollIntoView({ behavior: 'smooth' });
-}
-
-function cancelEdit() {
-  document.getElementById('propertyForm').reset();
-  document.getElementById('editId').value = '';
-  document.getElementById('propSubmitBtn').textContent = 'Add Property';
-  document.getElementById('adminFormTitle').textContent = 'Add New Property';
-  document.getElementById('cancelEditBtn').style.display = 'none';
-}
-
-function deleteProperty(id) {
-  if (!confirm('Delete this property?')) return;
-  listings = listings.filter(p => p.id !== id);
-  saveListings();
-  renderListings();
-  renderAdminList();
-}
-
-function renderAdminList() {
-  const list = document.getElementById('adminList');
-  list.innerHTML = listings.map(prop => `
-    <div class="admin-item">
-      <img src="${prop.image}" alt="${prop.address}">
-      <div class="admin-item-info">
-        <strong>${prop.address}</strong>
-        <span>${formatPrice(prop.price)} · ${prop.beds}BD/${prop.baths}BA · ${prop.status}</span>
-      </div>
-      <div class="admin-item-actions">
-        <button class="edit-btn" onclick="editProperty('${prop.id}')">Edit</button>
-        <button class="delete-btn" onclick="deleteProperty('${prop.id}')">Delete</button>
-      </div>
-    </div>
-  `).join('') || '<p style="color:var(--text-muted);text-align:center;padding:2rem;">No properties yet. Add one above.</p>';
-}
-
-function saveListings() {
-  localStorage.setItem('homesByHadarListings', JSON.stringify(listings));
-}
-
-// ============ Contact Form ============
-function setupContactForm() {
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const firstName = formData.get('firstName');
-    const lastName = formData.get('lastName');
-    const email = formData.get('email');
-    const phone = formData.get('phone');
-    const message = formData.get('message');
-    const tcpaConsent = formData.get('tcpaConsent');
-    const termsAgree = formData.get('termsAgree');
-    
-    // Show success
-    form.innerHTML = `
-      <div style="text-align:center;padding:3rem;">
-        <div style="font-size:3rem;margin-bottom:1rem;">🎉</div>
-        <h3 style="font-size:1.5rem;margin-bottom:0.5rem;">Thanks, ${firstName}!</h3>
-        <p style="color:var(--text-secondary);">I'll be in touch within 24 hours.</p>
-        <p style="color:var(--text-muted);font-size:0.875rem;margin-top:1rem;">For immediate help, call <a href="tel:+15613896038" style="color:var(--link-blue);">(561) 389-6038</a></p>
-      </div>
-    `;
-  });
-}
-
-// ============ Utilities ============
-function formatPrice(price) {
-  if (price >= 1000000) {
-    return '$' + (price / 1000000).toFixed(price % 1000000 === 0 ? 0 : 2) + 'M';
-  }
-  return '$' + price.toLocaleString();
-}
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
