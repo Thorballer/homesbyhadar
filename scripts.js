@@ -19,8 +19,7 @@ const pbcListings = [
     "year": 2001,
     "description": "Built in 2001. 1.74 acres. Market value $2,414,077",
     "features": [
-      "1.74 acres",
-      "Built 2001",
+      1.74 acres,
       "Market value $2,414,077"
     ],
     "image": "",
@@ -28,7 +27,7 @@ const pbcListings = [
     "owner": "EMILY VERNON FOUNDATION FOR",
     "market_value": 2414077,
     "sale_date": "Aug 01, 2024",
-    "acres": 1.74,
+    "acres": 1.7400,
     "source": "PBC Property Appraiser"
   },
   {
@@ -44,8 +43,7 @@ const pbcListings = [
     "year": 1982,
     "description": "Built in 1982. 0.35 acres. Market value $1,882,435",
     "features": [
-      "0.35 acres",
-      "Built 1982",
+      0.35 acres,
       "Market value $1,882,435"
     ],
     "image": "",
@@ -53,7 +51,7 @@ const pbcListings = [
     "owner": "YOZELL JOHN &",
     "market_value": 1882435,
     "sale_date": "Feb 23, 2025",
-    "acres": 0.35,
+    "acres": 0.3500,
     "source": "PBC Property Appraiser"
   },
   {
@@ -69,8 +67,7 @@ const pbcListings = [
     "year": 1995,
     "description": "Built in 1995. 2.33 acres. Market value $2,033,554",
     "features": [
-      "2.33 acres",
-      "Built 1995",
+      2.33 acres,
       "Market value $2,033,554"
     ],
     "image": "",
@@ -78,7 +75,7 @@ const pbcListings = [
     "owner": "MORTENSON MOLLY &",
     "market_value": 2033554,
     "sale_date": "Feb 19, 2025",
-    "acres": 2.33,
+    "acres": 2.3300,
     "source": "PBC Property Appraiser"
   },
   {
@@ -94,8 +91,7 @@ const pbcListings = [
     "year": 1997,
     "description": "Built in 1997. 10.56 acres. Market value $9,090,409",
     "features": [
-      "10.56 acres",
-      "Built 1997",
+      10.56 acres,
       "Market value $9,090,409"
     ],
     "image": "",
@@ -103,7 +99,7 @@ const pbcListings = [
     "owner": "HOGAN SARA G &",
     "market_value": 9090409,
     "sale_date": "Jul 20, 2015",
-    "acres": 10.56,
+    "acres": 10.5600,
     "source": "PBC Property Appraiser"
   },
   {
@@ -119,8 +115,7 @@ const pbcListings = [
     "year": 2006,
     "description": "Built in 2006. 0.47 acres. Market value $3,866,132",
     "features": [
-      "0.47 acres",
-      "Built 2006",
+      0.47 acres,
       "Market value $3,866,132"
     ],
     "image": "",
@@ -128,7 +123,7 @@ const pbcListings = [
     "owner": "SANFORD KEVIN R",
     "market_value": 3866132,
     "sale_date": "Apr 28, 2015",
-    "acres": 0.47,
+    "acres": 0.4700,
     "source": "PBC Property Appraiser"
   },
   {
@@ -144,8 +139,7 @@ const pbcListings = [
     "year": 2000,
     "description": "Built in 2000. 0.69 acres. Market value $3,774,768",
     "features": [
-      "0.69 acres",
-      "Built 2000",
+      0.69 acres,
       "Market value $3,774,768"
     ],
     "image": "",
@@ -153,7 +147,7 @@ const pbcListings = [
     "owner": "MEYER ELIZABETH D 1994 TRUST",
     "market_value": 3774768,
     "sale_date": "May 25, 2009",
-    "acres": 0.69,
+    "acres": 0.6900,
     "source": "PBC Property Appraiser"
   },
   {
@@ -169,7 +163,7 @@ const pbcListings = [
     "year": null,
     "description": "5.00 acres. Market value $2,752,919",
     "features": [
-      "5.00 acres",
+      5.00 acres,
       "Market value $2,752,919"
     ],
     "image": "",
@@ -177,7 +171,7 @@ const pbcListings = [
     "owner": "LCR PBP WEST LLC",
     "market_value": 2752919,
     "sale_date": "Mar 27, 2018",
-    "acres": 5.0,
+    "acres": 5.0000,
     "source": "PBC Property Appraiser"
   },
   {
@@ -193,8 +187,7 @@ const pbcListings = [
     "year": 1985,
     "description": "Built in 1985. 5.00 acres. Market value $3,796,766",
     "features": [
-      "5.00 acres",
-      "Built 1985",
+      5.00 acres,
       "Market value $3,796,766"
     ],
     "image": "",
@@ -202,7 +195,7 @@ const pbcListings = [
     "owner": "LCR PBP WEST LLC",
     "market_value": 3796766,
     "sale_date": "Mar 27, 2018",
-    "acres": 5.0,
+    "acres": 5.0000,
     "source": "PBC Property Appraiser"
   },
   {
@@ -218,6 +211,7 @@ const pbcListings = [
     "year": null,
     "description": "Market value $1,314,856",
     "features": [
+      null,
       "Market value $1,314,856"
     ],
     "image": "",
@@ -241,8 +235,7 @@ const pbcListings = [
     "year": 2006,
     "description": "Built in 2006. 0.32 acres. Market value $2,567,985",
     "features": [
-      "0.32 acres",
-      "Built 2006",
+      0.32 acres,
       "Market value $2,567,985"
     ],
     "image": "",
@@ -250,7 +243,7 @@ const pbcListings = [
     "owner": "MOTT MILO I",
     "market_value": 2567985,
     "sale_date": "Aug 10, 2006",
-    "acres": 0.32,
+    "acres": 0.3200,
     "source": "PBC Property Appraiser"
   },
   {
@@ -266,8 +259,7 @@ const pbcListings = [
     "year": 2004,
     "description": "Built in 2004. 5.52 acres. Market value $4,242,326",
     "features": [
-      "5.52 acres",
-      "Built 2004",
+      5.52 acres,
       "Market value $4,242,326"
     ],
     "image": "",
@@ -275,7 +267,7 @@ const pbcListings = [
     "owner": "4 WINDS FARM LLC",
     "market_value": 4242326,
     "sale_date": "Sep 02, 2013",
-    "acres": 5.52,
+    "acres": 5.5200,
     "source": "PBC Property Appraiser"
   },
   {
@@ -291,8 +283,7 @@ const pbcListings = [
     "year": 2002,
     "description": "Built in 2002. 1.00 acres. Market value $10,570,550",
     "features": [
-      "1.00 acres",
-      "Built 2002",
+      1.00 acres,
       "Market value $10,570,550"
     ],
     "image": "",
@@ -300,7 +291,7 @@ const pbcListings = [
     "owner": "AMBASSADOR ROAD LLC",
     "market_value": 10570550,
     "sale_date": "May 25, 2016",
-    "acres": 1.0,
+    "acres": 1.0000,
     "source": "PBC Property Appraiser"
   },
   {
@@ -316,8 +307,7 @@ const pbcListings = [
     "year": 2022,
     "description": "Built in 2022. 0.18 acres. Market value $2,898,399",
     "features": [
-      "0.18 acres",
-      "Built 2022",
+      0.18 acres,
       "Market value $2,898,399"
     ],
     "image": "",
@@ -325,7 +315,7 @@ const pbcListings = [
     "owner": "HACKER MARK S &",
     "market_value": 2898399,
     "sale_date": "Aug 14, 2022",
-    "acres": 0.18,
+    "acres": 0.1800,
     "source": "PBC Property Appraiser"
   },
   {
@@ -341,8 +331,7 @@ const pbcListings = [
     "year": 1986,
     "description": "Built in 1986. 0.52 acres. Market value $2,378,963",
     "features": [
-      "0.52 acres",
-      "Built 1986",
+      0.52 acres,
       "Market value $2,378,963"
     ],
     "image": "",
@@ -350,7 +339,7 @@ const pbcListings = [
     "owner": "TR MAIDSTONE LLC",
     "market_value": 2378963,
     "sale_date": "Mar 16, 2026",
-    "acres": 0.52,
+    "acres": 0.5200,
     "source": "PBC Property Appraiser"
   },
   {
@@ -366,8 +355,7 @@ const pbcListings = [
     "year": 1987,
     "description": "Built in 1987. 2.10 acres. Market value $2,394,045",
     "features": [
-      "2.10 acres",
-      "Built 1987",
+      2.10 acres,
       "Market value $2,394,045"
     ],
     "image": "",
@@ -375,7 +363,7 @@ const pbcListings = [
     "owner": "STIRBL STEVEN",
     "market_value": 2394045,
     "sale_date": "Jul 07, 2022",
-    "acres": 2.1,
+    "acres": 2.1000,
     "source": "PBC Property Appraiser"
   },
   {
@@ -391,8 +379,7 @@ const pbcListings = [
     "year": 2008,
     "description": "Built in 2008. 5.62 acres. Market value $8,485,689",
     "features": [
-      "5.62 acres",
-      "Built 2008",
+      5.62 acres,
       "Market value $8,485,689"
     ],
     "image": "",
@@ -400,7 +387,7 @@ const pbcListings = [
     "owner": "3436 GRAND PRIX FARMS DRIVE LLC",
     "market_value": 8485689,
     "sale_date": "Mar 11, 2026",
-    "acres": 5.62,
+    "acres": 5.6200,
     "source": "PBC Property Appraiser"
   },
   {
@@ -416,8 +403,7 @@ const pbcListings = [
     "year": 2020,
     "description": "Built in 2020. 0.64 acres. Market value $5,889,931",
     "features": [
-      "0.64 acres",
-      "Built 2020",
+      0.64 acres,
       "Market value $5,889,931"
     ],
     "image": "",
@@ -425,7 +411,7 @@ const pbcListings = [
     "owner": "2520 WELLINGTON LLC",
     "market_value": 5889931,
     "sale_date": "Feb 18, 2026",
-    "acres": 0.64,
+    "acres": 0.6400,
     "source": "PBC Property Appraiser"
   },
   {
@@ -441,8 +427,7 @@ const pbcListings = [
     "year": 2002,
     "description": "Built in 2002. 7.17 acres. Market value $6,528,079",
     "features": [
-      "7.17 acres",
-      "Built 2002",
+      7.17 acres,
       "Market value $6,528,079"
     ],
     "image": "",
@@ -450,7 +435,7 @@ const pbcListings = [
     "owner": "JOKER REAL ESTATE LIMITED PARTNERSHIP",
     "market_value": 6528079,
     "sale_date": "Apr 07, 2026",
-    "acres": 7.17,
+    "acres": 7.1700,
     "source": "PBC Property Appraiser"
   },
   {
@@ -466,8 +451,7 @@ const pbcListings = [
     "year": 2016,
     "description": "Built in 2016. 0.62 acres. Market value $7,287,422",
     "features": [
-      "0.62 acres",
-      "Built 2016",
+      0.62 acres,
       "Market value $7,287,422"
     ],
     "image": "",
@@ -475,7 +459,7 @@ const pbcListings = [
     "owner": "WINTER CIRCUIT LLC",
     "market_value": 7287422,
     "sale_date": "Mar 29, 2026",
-    "acres": 0.62,
+    "acres": 0.6200,
     "source": "PBC Property Appraiser"
   },
   {
@@ -491,8 +475,7 @@ const pbcListings = [
     "year": 2003,
     "description": "Built in 2003. 5.74 acres. Market value $5,731,052",
     "features": [
-      "5.74 acres",
-      "Built 2003",
+      5.74 acres,
       "Market value $5,731,052"
     ],
     "image": "",
@@ -500,7 +483,7 @@ const pbcListings = [
     "owner": "HASEOTES VASILIOS S II",
     "market_value": 5731052,
     "sale_date": "Dec 09, 2025",
-    "acres": 5.74,
+    "acres": 5.7400,
     "source": "PBC Property Appraiser"
   },
   {
@@ -516,8 +499,7 @@ const pbcListings = [
     "year": 2017,
     "description": "Built in 2017. 0.56 acres. Market value $7,130,943",
     "features": [
-      "0.56 acres",
-      "Built 2017",
+      0.56 acres,
       "Market value $7,130,943"
     ],
     "image": "",
@@ -525,7 +507,7 @@ const pbcListings = [
     "owner": "GOUTAL JEAN",
     "market_value": 7130943,
     "sale_date": "Mar 23, 2026",
-    "acres": 0.56,
+    "acres": 0.5600,
     "source": "PBC Property Appraiser"
   },
   {
@@ -541,7 +523,7 @@ const pbcListings = [
     "year": 1995,
     "description": "Built in 1995. Market value $4,720,210",
     "features": [
-      "Built 1995",
+      null,
       "Market value $4,720,210"
     ],
     "image": "",
@@ -565,8 +547,7 @@ const pbcListings = [
     "year": 1993,
     "description": "Built in 1993. 4.08 acres. Market value $5,163,476",
     "features": [
-      "4.08 acres",
-      "Built 1993",
+      4.08 acres,
       "Market value $5,163,476"
     ],
     "image": "",
@@ -574,7 +555,7 @@ const pbcListings = [
     "owner": "BLUEBONNET FARM LLC",
     "market_value": 5163476,
     "sale_date": "Apr 29, 2026",
-    "acres": 4.08,
+    "acres": 4.0800,
     "source": "PBC Property Appraiser"
   },
   {
@@ -590,8 +571,7 @@ const pbcListings = [
     "year": 2010,
     "description": "Built in 2010. 5.92 acres. Market value $6,585,534",
     "features": [
-      "5.92 acres",
-      "Built 2010",
+      5.92 acres,
       "Market value $6,585,534"
     ],
     "image": "",
@@ -599,7 +579,7 @@ const pbcListings = [
     "owner": "VATTEROTT PATRICIA S",
     "market_value": 6585534,
     "sale_date": "Nov 25, 2025",
-    "acres": 5.92,
+    "acres": 5.9200,
     "source": "PBC Property Appraiser"
   },
   {
@@ -615,8 +595,7 @@ const pbcListings = [
     "year": 1989,
     "description": "Built in 1989. 0.55 acres. Market value $3,674,614",
     "features": [
-      "0.55 acres",
-      "Built 1989",
+      0.55 acres,
       "Market value $3,674,614"
     ],
     "image": "",
@@ -624,7 +603,7 @@ const pbcListings = [
     "owner": "GALENA HOLLOW 2600 LLC",
     "market_value": 3674614,
     "sale_date": "Apr 20, 2026",
-    "acres": 0.55,
+    "acres": 0.5500,
     "source": "PBC Property Appraiser"
   }
-];
+]
